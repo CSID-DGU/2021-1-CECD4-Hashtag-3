@@ -44,31 +44,48 @@ def decodeframe(frame):
 
 # Load an frame
 
-def printImage(objects):
-    for obj in objects:
-        frame = cv.imread(obj) 
-        imageHeight, imageWidth = frame.shape[:2]
+def resizeImage(frame, cnt, num):
+    imageHeight, imageWidth = frame.shape[:2]
+    if cnt == 0:
         resizeHeight = int(0.8 * imageHeight) 
-        resizeWidth = int(0.6 * imageWidth) 
-        resizeImageNDArray = cv.resize(frame, (resizeHeight, resizeWidth), interpolation = cv.INTER_CUBIC)
-        cv.imshow('QR Detection', resizeImageNDArray)
-        cv.waitKey(2000)
+        resizeWidth = int(0.4 * imageWidth) 
+    elif num == 3:
+        resizeHeight = int(0.6 * imageHeight) 
+        resizeWidth = int(1.2 * imageWidth) 
+    elif num == 1 and cnt == 1 or cnt == 2:
+        resizeHeight = int(0.5 * imageHeight) 
+        resizeWidth = int(0.2 * imageWidth) 
+    else:
+        resizeHeight = int(0.5 * imageHeight) 
+        resizeWidth = int(0.5 * imageWidth) 
+    resizeImageNDArray = cv.resize(frame, (resizeHeight, resizeWidth), interpolation = cv.INTER_CUBIC)
+    return resizeImageNDArray
+
+
+
+def printImage(objects, num):
+    cnt = 0
+    for obj in objects:
+        frame = cv.imread("multiple-detection/"+obj) 
+        frame = resizeImage(frame, cnt, num) if cnt == 0 or num == 1  or num == 3 else frame
+        cv.imshow('QR Detection', frame)
+        cnt += 1
+        cv.waitKey(1500)
         cv.destroyAllWindows()
 
+    cnt = 0
     for obj in objects:
-        frame = cv.imread(obj) 
+        frame = cv.imread("multiple-detection/"+obj) 
         decodeframe(frame)
-        imageHeight, imageWidth = frame.shape[:2]
-        resizeHeight = int(0.8 * imageHeight) 
-        resizeWidth = int(0.6 * imageWidth) 
-        resizeImageNDArray = cv.resize(frame, (resizeHeight, resizeWidth), interpolation = cv.INTER_CUBIC)
-        cv.imshow('QR Detection', resizeImageNDArray)
+        frame = resizeImage(frame, cnt, num) if cnt == 0 or num == 1 or num == 3 else frame
+        cv.imshow('QR Detection', frame)
+        cnt += 1
         cv.waitKey(2000)
         cv.destroyAllWindows()
 
-printImage(objects1)
-printImage(objects2)
-printImage(objects3)
+printImage(objects1, 1)
+printImage(objects2, 2)
+printImage(objects3, 3)
 
 
 # threshold = 0.6  
