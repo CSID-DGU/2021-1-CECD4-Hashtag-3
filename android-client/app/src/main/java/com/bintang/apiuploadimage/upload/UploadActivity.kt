@@ -37,7 +37,7 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
         permissionLocation()
 
         btnUpload.setOnClickListener {
-            actionTambah()
+            actionPhoto()
         }
 
         btnTambah.setOnClickListener {
@@ -54,28 +54,8 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
         }
     }
 
-    private fun actionTambah() {
-//        val kode_barang = tambahkodebarang?.text.toString()
-//        val nama_barang = tambahnamabarang?.text.toString()
-//        val stock = tambahstock?.text.toString()
-//        val deskripsi = tambahdeskripsi?.text.toString()
-
-//        image_path?.let { presenter?.upload(kode_barang, nama_barang, stock, deskripsi, it) }
+    private fun actionPhoto() {
           image_path?.let { presenter?.upload(it) }
-
-//        if(TextUtils.isEmpty(kode_barang)) {
-////            tambahkodebarang?.error = "Wajib Diisi"
-////            tambahkodebarang?.requestFocus()
-//        } else if (TextUtils.isEmpty(nama_barang)) {
-////            tambahnamabarang?.error = "Wajib Diisi"
-////            tambahnamabarang?.requestFocus()
-//        } else if(TextUtils.isEmpty(stock)) {
-////            tambahstock?.error = "Wajib Diisi"
-////            tambahstock?.requestFocus()
-//        } else if (TextUtils.isEmpty(deskripsi)) {
-////            tambahdeskripsi?.error = "Wajib Diisi"
-////            tambahdeskripsi?.requestFocus()
-//        }
     }
 
     private fun actionUpload() {
@@ -128,7 +108,7 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
         if (data !=null) {
             try {
                 image_path = data.data?.let { FilePath.getPath(this, it) }
-                Log.d("Galery", image_path ?: "")
+                Log.d("Gallery", image_path ?: "")
                 bm = MediaStore.Images.Media.getBitmap(applicationContext.contentResolver, data.data)
             } catch (e : IOException) {
                 e.printStackTrace()
@@ -181,7 +161,7 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
 
     override fun onErrorServer(message: String) {
         AlertDialog.Builder(this)
-                .setTitle("Informasi")
+                .setTitle("서버 연결에러")
                 .setMessage("Error Server")
                 .setNegativeButton("OK", DialogInterface.OnClickListener{dialogINterface, i ->
 

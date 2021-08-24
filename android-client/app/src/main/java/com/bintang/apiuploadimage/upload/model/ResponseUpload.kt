@@ -6,7 +6,7 @@ import java.io.Serializable
 data class ResponseUpload(
 
 	@SerializedName("count")
-	val count:Int,
+	var count:Int,
 
 
 	@SerializedName("name")

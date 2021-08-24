@@ -42,4 +42,15 @@ interface ApiService {
 //        @Part("deskripsi") deskripsi: RequestBody,
         @Part image:MultipartBody.Part
         ): Call<List<ResponseUpload>>
+    @Multipart
+    @POST("/getEmail")
+    fun call_email(
+
+        @Part("email") email: RequestBody,
+        @Part("item") item: RequestBody
+
+
+    ): Call<EmailResponse>
+
+
 }
