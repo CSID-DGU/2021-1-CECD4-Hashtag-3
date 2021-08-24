@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".StartActivity" android:background="#FFD3B6">
+
+    <Button
+            android:text="쇼핑하기"
+            android:layout_width="259dp"
+            android:layout_height="70dp" android:id="@+id/startBtn"
+            android:layout_marginTop="148dp"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:background="#A8E6CF" android:textColor="@color/white"
+            android:textSize="34sp" android:textStyle="bold"/>
+    <ImageView
+            android:layout_width="262dp"
+            android:layout_height="275dp" app:srcCompat="@drawable/groceries" android:id="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="92dp" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

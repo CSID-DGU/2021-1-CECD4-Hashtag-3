@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ApiUploadImage</string>
+    <string name="error_writing_bitmap">error</string>
+</resources>
