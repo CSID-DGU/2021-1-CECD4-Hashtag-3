@@ -1,13 +1,9 @@
-package com.bintang.apiuploadimage.upload
+package com.example.hashtag.upload
 
-import android.app.ProgressDialog
 import android.text.TextUtils
 import android.util.Log
-import android.widget.ProgressBar
-
-import com.bintang.apiuploadimage.LoadingDialog
-import com.bintang.apiuploadimage.upload.model.NetworkClient
-import com.bintang.apiuploadimage.upload.model.ResponseUpload
+import com.example.hashtag.upload.model.NetworkClient
+import com.example.hashtag.upload.model.ResponseUpload
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -18,8 +14,7 @@ import java.io.File
 
 class UploadPresenter(val view: UploadView) {
 
-      fun upload(image: String) {
-
+    fun upload(image: String) {
         if (TextUtils.isEmpty(image)) {
             Log.d("이미지 선택 미완료", image)
             view.isEmpty("사진 선택x")
@@ -34,16 +29,14 @@ class UploadPresenter(val view: UploadView) {
             NetworkClient.initService().upload(requestFile).enqueue(object : retrofit2.Callback<List<ResponseUpload>> {
 
                 override fun onResponse(call: Call<List<ResponseUpload>>?, response: Response<List<ResponseUpload>>?) {
-
                     view.onQuit("ll")
                     var dataList = ArrayList<ResponseUpload>()
-                            dataList.addAll(response!!.body()!!)
-                            Log.d("image is", image_path)
-                            Log.d("datalist is....",dataList.toString())
-                            response.body()?.let { view.onSuccessupload(dataList)
-                            }
+                    dataList.addAll(response!!.body()!!)
+                    Log.d("image is", image_path)
+                    Log.d("datalist is....",dataList.toString())
+                    response.body()?.let { view.onSuccessupload(dataList)
+                    }
                 }
-
                 override fun onFailure(call: Call<List<ResponseUpload>>?, t: Throwable) {
                     view.onErrorServer(t.localizedMessage)
                 }
@@ -51,3 +44,4 @@ class UploadPresenter(val view: UploadView) {
         }
     }
 }
+

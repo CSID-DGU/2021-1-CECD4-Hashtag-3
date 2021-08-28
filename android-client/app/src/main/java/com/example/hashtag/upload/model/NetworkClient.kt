@@ -1,4 +1,4 @@
-package com.bintang.apiuploadimage.upload.model
+package com.example.hashtag.upload.model
 
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
@@ -40,7 +40,7 @@ interface ApiService {
     @POST("/getItem")
     fun upload(
         @Part requestFile:MultipartBody.Part
-        ): Call<List<ResponseUpload>>
+    ): Call<List<ResponseUpload>>
     @Multipart
     @POST("/mail")
     fun call_email(

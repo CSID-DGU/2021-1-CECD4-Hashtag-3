@@ -1,4 +1,4 @@
-package com.bintang.apiuploadimage.upload.model
+package com.example.hashtag.upload.model
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

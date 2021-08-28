@@ -1,4 +1,4 @@
-package com.bintang.apiuploadimage
+package com.example.hashtag
 
 import android.content.Context
 import android.util.Log
@@ -8,31 +8,22 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import com.bintang.apiuploadimage.upload.CartActivity
-import com.bintang.apiuploadimage.upload.model.ResponseUpload
-import kotlinx.android.synthetic.main.activity_cart.*
-import kotlinx.android.synthetic.main.main_lv_item.*
+import com.example.hashtag.upload.CartActivity
+import com.example.hashtag.upload.model.ResponseUpload
 
 class MainListAdapter (val context: Context, val ItemList: ArrayList<ResponseUpload>) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        /* LayoutInflater는 item을 Adapter에서 사용할 View로 부풀려주는(inflate) 역할을 한다. */
+
         val view: View = LayoutInflater.from(context).inflate(R.layout.main_lv_item, null)
         val view2: View = LayoutInflater.from(context).inflate(R.layout.activity_cart, null)
-
-
-        /* 위에서 생성된 view를 res-layout-main_lv_item.xml 파일의 각 View와 연결하는 과정이다. */
-
         val name = view.findViewById<TextView>(R.id.tv_name)
         val count = view.findViewById<TextView>(R.id.tv_count)
         val price = view.findViewById<TextView>(R.id.tv_price)
         val plusBtn = view.findViewById<Button>(R.id.plusBtn)
         val minusBtn = view.findViewById<Button>(R.id.minusBtn)
         val cart = CartActivity()
-        /* ArrayList<Dog>의 변수 dog의 이미지와 데이터를 ImageView와 TextView에 담는다. */
         val item = ItemList[position]
-//        val resourceId = context.resources.getIdentifier(dog.photo, "drawable", context.packageName)
-//        dogPhoto.setImageResource(resourceId)
+
         name.text = item.name
         count.text = item.count.toString().plus("개")
         price.text = item.price.toString().plus("원")
@@ -71,9 +62,6 @@ class MainListAdapter (val context: Context, val ItemList: ArrayList<ResponseUpl
     override fun getItemId(position: Int): Long {
         return 0
     }
-//    fun getAllItem(){
-//        return ItemList
-//    }
     fun minusFun(posit: Int){
         var num = Integer.parseInt(ItemList[posit].count.toString())-1
 
@@ -92,7 +80,7 @@ class MainListAdapter (val context: Context, val ItemList: ArrayList<ResponseUpl
     fun getTotalPrice(): Int {
         var sum = 0
         for (p in ItemList) {
-           sum +=p.count*p.price
+            sum +=p.count*p.price
         }
         return  sum
     }

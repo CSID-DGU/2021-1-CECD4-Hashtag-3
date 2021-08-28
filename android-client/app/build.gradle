@@ -9,7 +9,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.bintang.apiuploadimage"
+        applicationId "com.example.hashtag"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1

@@ -1,7 +1,6 @@
-package com.bintang.apiuploadimage.upload
+package com.example.hashtag.upload
 
-import android.os.Message
-import com.bintang.apiuploadimage.upload.model.ResponseUpload
+import com.example.hashtag.upload.model.ResponseUpload
 
 interface UploadView {
     fun isEmpty(msg: String)

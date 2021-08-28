@@ -1,4 +1,4 @@
-package com.bintang.apiuploadimage.upload
+package com.example.hashtag.upload
 
 import android.app.ProgressDialog
 import android.content.DialogInterface
@@ -12,10 +12,9 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.bintang.apiuploadimage.LoadingDialog
-import com.bintang.apiuploadimage.R
-import com.bintang.apiuploadimage.upload.model.ResponseUpload
-import com.bintang.apiuploadimage.upload.utils.FilePath
+import com.example.hashtag.R
+import com.example.hashtag.upload.model.ResponseUpload
+import com.example.hashtag.upload.utils.FilePath
 import kotlinx.android.synthetic.main.activity_upload.*
 import java.io.File
 import java.io.FileOutputStream
@@ -52,14 +51,14 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
     fun permissionLocation() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(arrayOf(android.Manifest.permission.CAMERA,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+                android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE
             ), REQUEST_PERMISSION
             )
         }
     }
 
     private fun actionPhoto() {
-          image_path?.let { presenter?.upload(it) }
+        image_path?.let { presenter?.upload(it) }
     }
 
     private fun actionUpload() {
@@ -83,7 +82,7 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK  && requestCode == REQUEST_IMAGE_GALLERY) {
-           resultGallery(data)
+            resultGallery(data)
         }else if (resultCode == RESULT_OK && requestCode == REQUEST_IMAGE_CAMERA) {
             resultCamera(data)
         }
@@ -140,42 +139,42 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_PERMISSION ) {
-          Toast.makeText(this, "권한 허용", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "권한 허용", Toast.LENGTH_SHORT).show()
         }else {
-           Toast.makeText(this, "권한 불허용", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "권한 불허용", Toast.LENGTH_SHORT).show()
         }
     }
 
     override fun isEmpty(msg: String) {
         AlertDialog.Builder(this)
-                .setTitle("사진 선택 미완료")
-                .setMessage("사진을 업로드해주세요.")
-                .setNegativeButton("확인", DialogInterface.OnClickListener{ dialogInterface, i ->
+            .setTitle("사진 선택 미완료")
+            .setMessage("사진을 업로드해주세요.")
+            .setNegativeButton("확인", DialogInterface.OnClickListener{ dialogInterface, i ->
 
-                }).show()
+            }).show()
     }
 
     override fun onSuccessupload(List:ArrayList<ResponseUpload>) {
-            Log.d("success",List.toString())
+        Log.d("success",List.toString())
 //            tv_1.setText(List.toString())
-            var intent = Intent(this, CartActivity::class.java)
-            intent.putExtra("key",List)
-            startActivity(intent)
+        var intent = Intent(this, CartActivity::class.java)
+        intent.putExtra("key",List)
+        startActivity(intent)
     }
 
     override fun onErrorServer(message: String) {
         AlertDialog.Builder(this)
-                .setTitle("서버 연결에러")
-                .setMessage("Error Server")
-                .setNegativeButton("OK", DialogInterface.OnClickListener{dialogINterface, i ->
+            .setTitle("서버 연결에러")
+            .setMessage("Error Server")
+            .setNegativeButton("OK", DialogInterface.OnClickListener{dialogINterface, i ->
 
-                }).show()
+            }).show()
     }
     override fun onLoading(message: String) {
         val asyncDialog : ProgressDialog = ProgressDialog(this@UploadActivity)
-            asyncDialog.setProgressStyle(ProgressDialog.BUTTON_POSITIVE)
-            asyncDialog.setMessage("이미지를 분석중..!")
-            asyncDialog.show()
+        asyncDialog.setProgressStyle(ProgressDialog.BUTTON_POSITIVE)
+        asyncDialog.setMessage("이미지를 분석중..!")
+        asyncDialog.show()
 
     }
     override fun onQuit(message: String) {
@@ -183,3 +182,4 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
         asyncDialog.dismiss()
     }
 }
+
