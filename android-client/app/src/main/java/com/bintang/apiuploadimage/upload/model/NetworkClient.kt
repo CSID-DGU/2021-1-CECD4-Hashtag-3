@@ -8,6 +8,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+import java.util.concurrent.TimeUnit
 
 class NetworkClient() {
     companion object{
@@ -15,6 +16,8 @@ class NetworkClient() {
             val logging = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
             val client = OkHttpClient.Builder()
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
                 .addInterceptor(logging)
                 .build()
             return client
@@ -22,7 +25,7 @@ class NetworkClient() {
 
         fun getRetrofit(): Retrofit {
             return Retrofit.Builder()
-                .baseUrl("http://192.168.0.4:5000")
+                .baseUrl("https://hashtag-server-biqey.run.goorm.io")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(getClient())
                 .build()
@@ -36,14 +39,10 @@ interface ApiService {
     @Multipart
     @POST("/getItem")
     fun upload(
-//        @Part("kode_barang") kode_barang: RequestBody,
-//        @Part("nama_barang") nama_barang: RequestBody,
-//        @Part("stock") stock: RequestBody,
-//        @Part("deskripsi") deskripsi: RequestBody,
-        @Part image:MultipartBody.Part
+        @Part requestFile:MultipartBody.Part
         ): Call<List<ResponseUpload>>
     @Multipart
-    @POST("/getEmail")
+    @POST("/mail")
     fun call_email(
 
         @Part("email") email: RequestBody,

@@ -1,5 +1,6 @@
 package com.bintang.apiuploadimage
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -34,7 +35,7 @@ class PayActivity : AppCompatActivity() {
 
             for (p in list){
                 if(p.count!=0) {
-                    result_string += p.name + "    " + p.count + "개" + "    " + p.price+"원\n"
+                    result_string += p.name + "    \n" + p.count + "개" + "    " + p.price+"원\n"
 
 
                 }
@@ -51,9 +52,13 @@ class PayActivity : AppCompatActivity() {
 
             val email: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), edit_email.getText().toString())
                val item: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), result_string)
-
+               val asyncDialog : ProgressDialog = ProgressDialog(this@PayActivity)
+               asyncDialog.setProgressStyle(ProgressDialog.BUTTON_POSITIVE)
+               asyncDialog.setMessage("메일 전송중..!")
+               asyncDialog.show()
                NetworkClient.initService().call_email(email, item).enqueue(object : retrofit2.Callback<EmailResponse> {
                    override fun onResponse(call: Call<EmailResponse>, response: Response<EmailResponse>) {
+                       asyncDialog.dismiss()
                       Log.d("response email",response.body().toString())
                        val builder = AlertDialog.Builder(context)
 

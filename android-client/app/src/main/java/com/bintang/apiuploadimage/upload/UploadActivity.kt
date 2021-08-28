@@ -1,5 +1,6 @@
 package com.bintang.apiuploadimage.upload
 
+import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
@@ -11,6 +12,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.bintang.apiuploadimage.LoadingDialog
 import com.bintang.apiuploadimage.R
 import com.bintang.apiuploadimage.upload.model.ResponseUpload
 import com.bintang.apiuploadimage.upload.utils.FilePath
@@ -24,6 +26,7 @@ import java.util.*
 import kotlin.random.Random
 
 class UploadActivity : AppCompatActivity(), UploadView, Serializable{
+
     private var REQUEST_IMAGE_GALLERY = 0
     private var REQUEST_IMAGE_CAMERA = 1
     private var REQUEST_PERMISSION = 2
@@ -32,6 +35,7 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload)
+
 
         presenter = UploadPresenter(this)
         permissionLocation()
@@ -166,5 +170,16 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
                 .setNegativeButton("OK", DialogInterface.OnClickListener{dialogINterface, i ->
 
                 }).show()
+    }
+    override fun onLoading(message: String) {
+        val asyncDialog : ProgressDialog = ProgressDialog(this@UploadActivity)
+            asyncDialog.setProgressStyle(ProgressDialog.BUTTON_POSITIVE)
+            asyncDialog.setMessage("이미지를 분석중..!")
+            asyncDialog.show()
+
+    }
+    override fun onQuit(message: String) {
+        val asyncDialog : ProgressDialog = ProgressDialog(this@UploadActivity)
+        asyncDialog.dismiss()
     }
 }

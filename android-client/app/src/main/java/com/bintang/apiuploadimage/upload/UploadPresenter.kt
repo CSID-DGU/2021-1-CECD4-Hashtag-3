@@ -1,7 +1,11 @@
 package com.bintang.apiuploadimage.upload
 
+import android.app.ProgressDialog
 import android.text.TextUtils
 import android.util.Log
+import android.widget.ProgressBar
+
+import com.bintang.apiuploadimage.LoadingDialog
 import com.bintang.apiuploadimage.upload.model.NetworkClient
 import com.bintang.apiuploadimage.upload.model.ResponseUpload
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -23,17 +27,21 @@ class UploadPresenter(val view: UploadView) {
         else {
             val file = File(image)
             val image_path = image
-
+            view.onLoading("ll")
             val image: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
-            val requestFile = MultipartBody.Part.createFormData("image", file.name, image)
+            val requestFile = MultipartBody.Part.createFormData("requestFile", file.name, image)
 
             NetworkClient.initService().upload(requestFile).enqueue(object : retrofit2.Callback<List<ResponseUpload>> {
+
                 override fun onResponse(call: Call<List<ResponseUpload>>?, response: Response<List<ResponseUpload>>?) {
+
+                    view.onQuit("ll")
                     var dataList = ArrayList<ResponseUpload>()
-                    dataList.addAll(response!!.body()!!)
-                    Log.d("image is", image_path)
-                    Log.d("datalist is....",dataList.toString())
-                    response.body()?.let { view.onSuccessupload(dataList) }
+                            dataList.addAll(response!!.body()!!)
+                            Log.d("image is", image_path)
+                            Log.d("datalist is....",dataList.toString())
+                            response.body()?.let { view.onSuccessupload(dataList)
+                            }
                 }
 
                 override fun onFailure(call: Call<List<ResponseUpload>>?, t: Throwable) {
