@@ -22,6 +22,8 @@ class UploadPresenter(val view: UploadView) {
         else {
             val file = File(image)
             val image_path = image
+            Log.d("전송할 이미지",image )
+            Log.d("전송할 이미지 path",image_path )
             view.onLoading("ll")
             val image: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
             val requestFile = MultipartBody.Part.createFormData("requestFile", file.name, image)

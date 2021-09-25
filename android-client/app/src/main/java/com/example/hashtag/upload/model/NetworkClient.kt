@@ -16,8 +16,8 @@ class NetworkClient() {
             val logging = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
             val client = OkHttpClient.Builder()
-                .readTimeout(60, TimeUnit.SECONDS)
-                .writeTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(6000, TimeUnit.SECONDS)
+                .writeTimeout(6000, TimeUnit.SECONDS)
                 .addInterceptor(logging)
                 .build()
             return client

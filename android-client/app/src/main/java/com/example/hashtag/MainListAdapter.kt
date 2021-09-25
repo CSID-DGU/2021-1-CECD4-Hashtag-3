@@ -77,6 +77,13 @@ class MainListAdapter (val context: Context, val ItemList: ArrayList<ResponseUpl
     override fun getCount(): Int {
         return ItemList.size
     }
+    fun getTotalCount():Int{
+        var sum = 0
+        for (p in ItemList) {
+            sum +=p.count
+        }
+        return  sum
+    }
     fun getTotalPrice(): Int {
         var sum = 0
         for (p in ItemList) {
