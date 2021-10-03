@@ -25,7 +25,8 @@ class NetworkClient() {
 
         fun getRetrofit(): Retrofit {
             return Retrofit.Builder()
-                .baseUrl("https://hashtag-server-biqey.run.goorm.io")
+//                .baseUrl("https://hashtag-server-biqey.run.goorm.io")
+                .baseUrl("http://192.168.0.9:5000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(getClient())
                 .build()
@@ -41,6 +42,13 @@ interface ApiService {
     fun upload(
         @Part requestFile:MultipartBody.Part
     ): Call<List<ResponseUpload>>
+    @Multipart
+    @POST("/getItem")
+    fun upload_video(
+        @Part requestFile:MultipartBody.Part
+    ): Call<List<ResponseUpload>>
+    @GET("/getCartFeed")
+    fun get_cartfeed(): Call<CartFeedResponse>
     @Multipart
     @POST("/mail")
     fun call_email(

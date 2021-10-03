@@ -3,8 +3,6 @@ package com.example.hashtag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import pub.devrel.easypermissions.EasyPermissions
-
-
 import android.Manifest
 import android.app.ProgressDialog
 import android.content.DialogInterface
@@ -15,7 +13,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.camera.core.*
-
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.example.hashtag.Constants.FILENAME_FORMAT
@@ -24,9 +21,10 @@ import com.example.hashtag.Constants.TAG
 import com.example.hashtag.upload.CartActivity
 import com.example.hashtag.upload.UploadPresenter
 import com.example.hashtag.upload.UploadView
+import com.example.hashtag.upload.model.Cart
+import com.example.hashtag.upload.model.CartFeedResponse
+import com.example.hashtag.upload.model.Feed
 import com.example.hashtag.upload.model.ResponseUpload
-import com.example.hashtag.upload.utils.FilePath
-import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.activity_video.*
 import pub.devrel.easypermissions.AppSettingsDialog
 import java.io.File
@@ -53,32 +51,24 @@ class VideoActivity : AppCompatActivity(),UploadView, Serializable, EasyPermissi
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video)
         requestPermission()
-//        takePhoto()
         presenter = UploadPresenter(this)
 
-        camera_capture_button.setOnClickListener {
-
+        complete_btn.setOnClickListener {
             onDestroy()
-            var intent = Intent(this, CartActivity::class.java)
-            intent.putExtra("key", pathData)
-            startActivity(intent)
+           presenter?.get_cartfeed()
         }
-//        capture.setOnClickListener {
-//            takePhoto()
-//        }
 
         outputDirectory = getOutputDirectory()
 
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         var second: Int = 0
-        kotlin.concurrent.timer(period = 40000,initialDelay = 6000){
-           takePhoto()
-        }
+//        kotlin.concurrent.timer(period = 1000,initialDelay = 1000){
+//           takePhoto()
+//        }
 
 
     }
-
     private fun takePhoto() {
         // Get a stable reference of the modifiable image capture use case
         val imageCapture = imageCapture ?: return
@@ -112,17 +102,14 @@ class VideoActivity : AppCompatActivity(),UploadView, Serializable, EasyPermissi
                    // image_path = savedUri.let { FilePath.getPath(this, it) }.toString()
                     image_path = photoFile.toString()
                    // image_path = savedUri.toString()
-                    val msg ="저장성공  $image_path"
-                    Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                    Log.d(TAG, msg)
-                    image_path?.let { presenter?.upload(it)}
+//                    val msg ="저장성공  $image_path"
+//                    Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+//                    Log.d(TAG, msg)
+                    image_path?.let { presenter?.upload_video(it)}
 
                 }
             })
     }
-//    private fun actionPhoto() {
-//        image_path?.let { presenter?.upload(it) }
-//    }
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
@@ -145,8 +132,6 @@ class VideoActivity : AppCompatActivity(),UploadView, Serializable, EasyPermissi
                 .build()
                 .also {
                     it.setAnalyzer(cameraExecutor, LuminosityAnalyzer { luma ->
-//                        Log.d(TAG, "Average luminosity: $luma")
-//                        takePhoto()
                     })
                 }
 
@@ -203,12 +188,9 @@ class VideoActivity : AppCompatActivity(),UploadView, Serializable, EasyPermissi
                 "You need to accept the camera permission to use this app",
                 REQUEST_CODE_CAMERA_PERMISSION,
                 Manifest.permission.CAMERA
-
             )
         }
-
     }
-
 
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
         startCamera()
@@ -264,28 +246,27 @@ class VideoActivity : AppCompatActivity(),UploadView, Serializable, EasyPermissi
 
     override fun onSuccessupload(List:ArrayList<ResponseUpload>) {
         Log.d("success",List.toString())
-//            tv_1.setText(List.toString())
-        val itemAdapter = MainListAdapter(this, List)
-        mainListView.adapter = itemAdapter
-        count.setText(itemAdapter.getTotalCount().toString())
-        pathData = List
-//        var intent = Intent(this, CartActivity::class.java)
-//        intent.putExtra("key",List)
-//        startActivity(intent)
     }
-
+    override fun onSuccessFeed(List:ArrayList<Cart>, List1:ArrayList<Feed>) {
+        Log.d("success",List.toString())
+//            tv_1.setText(List.toString())
+        var intent = Intent(this, FeedActivity::class.java)
+        intent.putExtra("cart",List)
+        intent.putExtra("feed",List1)
+        startActivity(intent)
+    }
+    override fun onSuccess(message: String) {
+    }
     override fun onErrorServer(message: String) {
-        AlertDialog.Builder(this)
-            .setTitle("서버 연결에러")
-            .setMessage("Error Server")
-            .setNegativeButton("OK", DialogInterface.OnClickListener{ dialogINterface, i ->
-
-            }).show()
+        Toast.makeText(baseContext, "서버에러", Toast.LENGTH_SHORT).show()
+    }
+    override fun onLoad(message: String) {
+        Toast.makeText(baseContext, "분석 중..", Toast.LENGTH_SHORT).show()
     }
     override fun onLoading(message: String) {
         val asyncDialog : ProgressDialog = ProgressDialog(this@VideoActivity)
         asyncDialog.setProgressStyle(ProgressDialog.BUTTON_POSITIVE)
-        asyncDialog.setMessage("이미지를 분석중..!")
+        asyncDialog.setMessage("종료 중..")
         asyncDialog.show()
 
     }
