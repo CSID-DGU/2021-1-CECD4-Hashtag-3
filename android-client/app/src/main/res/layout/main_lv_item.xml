@@ -5,15 +5,17 @@
                                                    android:descendantFocusability="blocksDescendants" >
 
     <TextView
+            android:fontFamily="@font/enanum"
             android:text="수량"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/tv_count"
             app:layout_constraintEnd_toStartOf="@+id/tv_price"
-            android:layout_marginEnd="68dp" android:layout_marginRight="68dp"
+            android:layout_marginEnd="68dp"
             android:textStyle="bold"
             android:descendantFocusability="blocksDescendants" app:layout_constraintTop_toBottomOf="@+id/tv_name"
-            android:layout_marginTop="24dp" android:gravity="center"/>
+            android:layout_marginTop="24dp" android:gravity="center" android:textColor="#274046"/>
     <TextView
+            android:fontFamily="@font/enanum"
             android:text="상품명"
             android:layout_width="236dp"
             android:layout_height="26dp" android:id="@+id/tv_name"
@@ -21,18 +23,20 @@
             android:layout_marginTop="84dp"
             app:layout_constraintStart_toStartOf="parent"
             android:textStyle="bold"
-            android:descendantFocusability="blocksDescendants" android:layout_marginLeft="40dp"
-            android:layout_marginStart="40dp" android:gravity="center"/>
+            android:descendantFocusability="blocksDescendants"
+            android:layout_marginStart="40dp" android:gravity="center" android:textColor="#274046"/>
     <TextView
+            android:fontFamily="@font/enanum"
             android:text="가격"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/tv_price"
             app:layout_constraintEnd_toStartOf="@+id/plusBtn"
-            android:layout_marginEnd="72dp" android:layout_marginRight="72dp"
+            android:layout_marginEnd="72dp"
             android:descendantFocusability="blocksDescendants"
             android:textStyle="bold" app:layout_constraintTop_toBottomOf="@+id/tv_name"
-            android:layout_marginTop="24dp" android:gravity="center"/>
+            android:layout_marginTop="24dp" android:gravity="center" android:textColor="#274046"/>
     <Button
+            android:fontFamily="@font/enanum"
             android:layout_width="52dp"
             android:layout_height="34dp" android:id="@+id/minusBtn"
             android:focusable="false"
@@ -42,8 +46,10 @@
             android:layout_marginTop="4dp" app:layout_constraintEnd_toEndOf="@+id/plusBtn"
             app:layout_constraintStart_toStartOf="@+id/plusBtn"
             app:layout_constraintHorizontal_bias="0.0" android:text="—" android:textStyle="bold"
-            android:background="#FFD3B6"/>
+            android:background="@drawable/button2_background"
+            android:textColor="#274046"/>
     <Button
+            android:fontFamily="@font/enanum"
             android:text="+"
             android:layout_width="52dp"
             android:layout_height="34dp" android:id="@+id/plusBtn"
@@ -52,6 +58,7 @@
             android:descendantFocusability="blocksDescendants"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="84dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="44dp"
-            android:layout_marginRight="44dp" android:textStyle="bold" android:textSize="14sp"
-            android:gravity="center" android:background="#A8E6CF"/>
+            android:textStyle="bold" android:textSize="14sp"
+            android:gravity="center" android:background="@drawable/button_background"
+            android:textColor="#274046"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

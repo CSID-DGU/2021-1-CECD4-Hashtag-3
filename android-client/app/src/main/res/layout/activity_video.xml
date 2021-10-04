@@ -7,13 +7,14 @@
         android:layout_height="match_parent"
         tools:context=".VideoActivity">
     <Button
+            android:fontFamily="@font/enanum"
             android:id="@+id/complete_btn"
             android:layout_width="289dp"
             android:layout_height="63dp"
             android:elevation="2dp"
             android:scaleType="fitCenter"
             android:text="쇼핑종료"
-            android:background="#FFAAA5"
+            android:background="@drawable/button_background"
             android:textColor="@color/white" android:textSize="20sp" android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/viewFinder"

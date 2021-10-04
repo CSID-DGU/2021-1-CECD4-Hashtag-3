@@ -8,19 +8,23 @@
         tools:context=".MenuActivity">
 
     <Button
+            android:fontFamily="@font/enanum"
             android:text="사진으로 추가"
             android:layout_width="262dp"
             android:layout_height="62dp" android:id="@+id/btn_photo"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="228dp"
-            app:layout_constraintHorizontal_bias="0.496" android:background="#FFAAA5" android:textSize="24sp"
+            app:layout_constraintHorizontal_bias="0.496"             android:background="@drawable/button_background"
+            android:textSize="24sp"
             android:textStyle="bold" android:textColor="@color/white"/>
     <Button
+            android:fontFamily="@font/enanum"
             android:text="영상으로 추가"
             android:layout_width="262dp"
             android:layout_height="62dp" android:id="@+id/btn_video"
             app:layout_constraintStart_toStartOf="@+id/btn_photo" app:layout_constraintEnd_toEndOf="@+id/btn_photo"
             app:layout_constraintTop_toBottomOf="@+id/btn_photo" android:layout_marginTop="52dp"
-            app:layout_constraintHorizontal_bias="0.0" android:background="#A8E6CF" android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0.0"            android:background="@drawable/button2_background"
+            android:textStyle="bold"
             android:textSize="24sp" android:textColor="@color/white"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

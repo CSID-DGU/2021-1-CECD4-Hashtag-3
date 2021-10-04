@@ -4,15 +4,18 @@
                                                    android:layout_height="match_parent">
 
     <Button
+            android:fontFamily="@font/enanum"
             android:text="실행취소"
             android:layout_width="78dp"
             android:layout_height="36dp" android:id="@+id/btn_rerun"
-            android:background="#A8E6CF"
+            android:background="@drawable/button_background"
             app:layout_constraintBottom_toBottomOf="@+id/tv_item_command" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="40dp"
             app:layout_constraintTop_toTopOf="@+id/tv_item_count"
-            app:layout_constraintStart_toEndOf="@+id/tv_item_count" app:layout_constraintHorizontal_bias="0.72"/>
+            app:layout_constraintStart_toEndOf="@+id/tv_item_count" app:layout_constraintHorizontal_bias="0.72"
+            android:textColor="#274046"/>
     <TextView
+            android:fontFamily="@font/enanum"
             android:text="상품이름"
             android:layout_width="94dp"
             android:layout_height="29dp" android:id="@+id/tv_item_name"
@@ -20,8 +23,9 @@
             app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="72dp"
             app:layout_constraintStart_toStartOf="parent"
             android:gravity="center" android:layout_marginStart="60dp"
-    />
+            android:textColor="#274046"/>
     <TextView
+            android:fontFamily="@font/enanum"
             android:text="수행 명령"
             android:layout_width="142dp"
             android:layout_height="33dp" android:id="@+id/tv_item_command"
@@ -30,8 +34,9 @@
             app:layout_constraintStart_toStartOf="@+id/tv_item_name"
             app:layout_constraintEnd_toEndOf="@+id/tv_item_count"
             app:layout_constraintTop_toBottomOf="@+id/tv_item_name" android:layout_marginTop="4dp"
-            app:layout_constraintHorizontal_bias="0.383"/>
+            app:layout_constraintHorizontal_bias="0.383" android:textColor="#274046"/>
     <TextView
+            android:fontFamily="@font/enanum"
             android:text="수량"
             android:layout_width="71dp"
             android:layout_height="29dp" android:id="@+id/tv_item_count"
@@ -41,5 +46,5 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_item_name"
             app:layout_constraintStart_toEndOf="@+id/tv_item_name"
             app:layout_constraintVertical_bias="0.0"
-    />
+            android:textColor="#274046"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

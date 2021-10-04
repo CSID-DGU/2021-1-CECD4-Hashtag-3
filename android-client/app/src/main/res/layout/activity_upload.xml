@@ -21,10 +21,11 @@
                 android:orientation="vertical">
 
             <TextView
+                    android:fontFamily="@font/enanum"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="사진 업로드"
-                    android:textColor="#FFC7C7"
+                    android:textColor="#274046"
                     android:textSize="20dp"
                     android:textStyle="bold" android:gravity="center_horizontal"/>
 
@@ -37,20 +38,23 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="100dp"
                     android:layout_marginBottom="10dp"
-                    android:background="#FFE2E2"
+                    android:background="#ffc3a0"
                     android:layout_gravity="center_horizontal"/>
             <Button
+                    android:fontFamily="@font/enanum"
                     android:id="@+id/btnTambah"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#FFAAA5"
+                    android:background="@drawable/button_background"
                     android:text="사진 활영" android:textColor="@color/white" android:textSize="20sp"
                     android:textStyle="bold"/>
             <Button
+                    android:fontFamily="@font/enanum"
                     android:id="@+id/btnUpload"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#A8E6CF"
+                    android:background="@drawable/button2_background"
+
                     android:text="업로드" android:textColor="@color/white" android:textStyle="bold"
                     android:textSize="20sp"/>
 

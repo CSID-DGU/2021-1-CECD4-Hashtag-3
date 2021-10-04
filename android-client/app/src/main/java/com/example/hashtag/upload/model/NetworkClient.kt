@@ -25,8 +25,8 @@ class NetworkClient() {
 
         fun getRetrofit(): Retrofit {
             return Retrofit.Builder()
-//                .baseUrl("https://hashtag-server-biqey.run.goorm.io")
-                .baseUrl("http://192.168.0.9:5000")
+                .baseUrl("https://hashtag-server-biqey.run.goorm.io")
+//                .baseUrl("http://192.168.0.9:5000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(getClient())
                 .build()
