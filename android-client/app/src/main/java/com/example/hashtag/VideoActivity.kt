@@ -63,9 +63,9 @@ class VideoActivity : AppCompatActivity(),UploadView, Serializable, EasyPermissi
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         var second: Int = 0
-//        kotlin.concurrent.timer(period = 1000,initialDelay = 1000){
-//           takePhoto()
-//        }
+        kotlin.concurrent.timer(period = 1000,initialDelay = 1000){
+           takePhoto()
+        }
 
 
     }

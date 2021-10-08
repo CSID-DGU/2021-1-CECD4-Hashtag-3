@@ -24,6 +24,12 @@ class FeedActivity : AppCompatActivity() {
         tv_total_sum.setText(setString)
         total = setString
     }
+    fun Refresh(revise_feed: ArrayList<Feed>, revise_cart: ArrayList<Cart>) {
+        val intent = Intent(this@FeedActivity, FeedActivity::class.java)
+        intent.putExtra("cart",revise_cart)
+        intent.putExtra("feed",revise_feed)
+        startActivity(intent)
+    }
     fun toastError() {
         Toast.makeText(this, "0개 이하입니다.", Toast.LENGTH_SHORT).show();
     }
@@ -43,7 +49,7 @@ class FeedActivity : AppCompatActivity() {
             total = cartAdapter.getTotalPrice().toString().plus("원")
 
             payyBtn.setOnClickListener {
-                val intentss = Intent(this@FeedActivity, PayActivity::class.java)
+                val intentss = Intent(this@FeedActivity, Pay2Activity::class.java)
                 intentss.putExtra("list",pathData)
                 intentss.putExtra("total", total)
                 Log.d("pass this", pathData.toString())

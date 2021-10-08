@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 data class Cart(
     @SerializedName("code")
-    val code: Int,
+    var code: Int,
     @SerializedName("count")
     var count: Int,
     @SerializedName("name")
-    val name: String,
+    var name: String,
     @SerializedName("price")
-    val price: Int
+    var price: Int
 ):Serializable

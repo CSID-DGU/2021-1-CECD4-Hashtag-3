@@ -17,8 +17,8 @@
     <TextView
             android:fontFamily="@font/enanum"
             android:text="상품이름"
-            android:layout_width="94dp"
-            android:layout_height="29dp" android:id="@+id/tv_item_name"
+            android:layout_width="114dp"
+            android:layout_height="32dp" android:id="@+id/tv_item_name"
             android:textStyle="bold" android:textAlignment="center"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="72dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,12 +34,12 @@
             app:layout_constraintStart_toStartOf="@+id/tv_item_name"
             app:layout_constraintEnd_toEndOf="@+id/tv_item_count"
             app:layout_constraintTop_toBottomOf="@+id/tv_item_name" android:layout_marginTop="4dp"
-            app:layout_constraintHorizontal_bias="0.383" android:textColor="#274046"/>
+            app:layout_constraintHorizontal_bias="0.0" android:textColor="#274046"/>
     <TextView
             android:fontFamily="@font/enanum"
             android:text="수량"
             android:layout_width="71dp"
-            android:layout_height="29dp" android:id="@+id/tv_item_count"
+            android:layout_height="32dp" android:id="@+id/tv_item_count"
             android:textStyle="bold" android:textAlignment="center"
             android:gravity="center"
             app:layout_constraintTop_toTopOf="@+id/tv_item_name"

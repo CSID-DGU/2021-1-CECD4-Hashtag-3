@@ -3,6 +3,7 @@ package com.example.hashtag.upload.model
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -58,6 +59,13 @@ interface ApiService {
 
 
     ): Call<EmailResponse>
+    @POST("/mail")
+    fun call_email2(
 
+        @Part("email") email: RequestBody,
+        @Part("item") item: RequestBody
+
+
+    ): Call<ResponseBody>
 
 }

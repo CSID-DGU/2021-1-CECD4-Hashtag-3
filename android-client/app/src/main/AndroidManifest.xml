@@ -15,6 +15,10 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.hashtag"
             android:usesCleartextTraffic="true">
+        <activity android:name=".QrActivity">
+        </activity>
+        <activity android:name=".Pay2Activity">
+        </activity>
         <activity android:name=".FeedActivity">
         </activity>
         <activity android:name=".VideoActivity">
