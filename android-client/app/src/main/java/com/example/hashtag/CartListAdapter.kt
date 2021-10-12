@@ -8,20 +8,19 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.TextView
-import com.example.hashtag.upload.CartActivity
-import com.example.hashtag.upload.model.ResponseUpload
+import com.example.hashtag.upload.model.Cart
 
-class MainListAdapter (val context: Context, val ItemList: ArrayList<ResponseUpload>) : BaseAdapter() {
+
+class CartListAdapter (val context: Context, val ItemList: ArrayList<Cart>) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
-        val view: View = LayoutInflater.from(context).inflate(R.layout.main_lv_item, null)
-        val view2: View = LayoutInflater.from(context).inflate(R.layout.activity_cart, null)
+        val view: View = LayoutInflater.from(context).inflate(R.layout.cart_lv_item, null)
         val name = view.findViewById<TextView>(R.id.tv_name)
         val count = view.findViewById<TextView>(R.id.tv_count)
         val price = view.findViewById<TextView>(R.id.tv_price)
         val plusBtn = view.findViewById<Button>(R.id.plusBtn)
         val minusBtn = view.findViewById<Button>(R.id.minusBtn)
-        val cart = CartActivity()
+        val feed = FeedActivity()
         val item = ItemList[position]
 
         name.text = item.name
@@ -32,7 +31,7 @@ class MainListAdapter (val context: Context, val ItemList: ArrayList<ResponseUpl
         minusBtn.setOnClickListener {
             var num = Integer.parseInt(item.count.toString())
             if(num==0){
-                (context as CartActivity).toastError()
+                (context as FeedActivity).toastError()
             }
             else {
                 num -= 1
@@ -40,7 +39,7 @@ class MainListAdapter (val context: Context, val ItemList: ArrayList<ResponseUpl
                 Log.d("clicked minus count", count.toString())
                 count.text = item.count.toString().plus("개")
 
-                (context as CartActivity).ReviseTotal(getTotalPrice().toString().plus("원"))
+                (context as FeedActivity).ReviseTotal(getTotalPrice().toString().plus("원"))
             }
 
         }
@@ -49,7 +48,7 @@ class MainListAdapter (val context: Context, val ItemList: ArrayList<ResponseUpl
             item.count = num
             Log.d("clicked minus count", count.toString())
             count.text = item.count.toString().plus("개")
-            (context as CartActivity).ReviseTotal(getTotalPrice().toString().plus("원"))
+            (context as FeedActivity).ReviseTotal(getTotalPrice().toString().plus("원"))
 
         }
         return view

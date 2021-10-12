@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hashtag.MainListAdapter
+import com.example.hashtag.MenuActivity
 import com.example.hashtag.PayActivity
 import com.example.hashtag.R
 import com.example.hashtag.upload.model.ResponseUpload
@@ -47,7 +48,7 @@ class CartActivity : AppCompatActivity() {
 
 
         addBtn.setOnClickListener {
-            val intents = Intent(this@CartActivity, UploadActivity::class.java)
+            val intents = Intent(this@CartActivity, MenuActivity::class.java)
             startActivity(intents)
         }
 

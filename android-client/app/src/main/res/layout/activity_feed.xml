@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".FeedActivity" android:id="@+id/payBtn">
+
+    <ListView
+            android:layout_width="349dp"
+            android:layout_height="180dp"
+            android:fontFamily="@font/enanum"
+            android:id="@+id/FeedListView"
+            app:layout_constraintStart_toStartOf="@+id/textView3" app:layout_constraintEnd_toEndOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" android:layout_marginTop="12dp"
+            app:layout_constraintHorizontal_bias="0.497"/>
+    <ListView
+            android:fontFamily="@font/enanum"
+            android:layout_width="349dp"
+            android:layout_height="180dp"
+            android:id="@+id/CartListView"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="@+id/textView" app:layout_constraintTop_toBottomOf="@+id/textView"
+            android:layout_marginTop="12dp" app:layout_constraintHorizontal_bias="0.497"/>
+    <Button
+            android:fontFamily="@font/enanum"
+            android:text="상품 추가하기"
+            android:layout_width="163dp"
+            android:layout_height="58dp" android:id="@+id/addBtn"
+            android:textColor="@color/white"             android:background="@drawable/button_background"
+
+            android:textSize="20sp" android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tv_total"
+            app:layout_constraintEnd_toStartOf="@+id/payyBtn" app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@+id/tv_total" android:layout_marginTop="32dp"/>
+    <Button
+            android:fontFamily="@font/enanum"
+            android:text="결제하기"
+            android:layout_width="163dp"
+            android:layout_height="58dp" android:id="@+id/payyBtn"
+            android:background="@drawable/button2_background"
+            android:textColor="@color/white"
+            android:textSize="20sp" android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tv_total_sum"
+            app:layout_constraintTop_toBottomOf="@+id/tv_total_sum" android:layout_marginTop="32dp"
+            android:layout_marginEnd="12dp"/>
+    <TextView
+            android:fontFamily="@font/enanum"
+            android:text="0"
+            android:layout_width="160dp"
+            android:layout_height="31dp" android:id="@+id/tv_total_sum"
+            android:gravity="center_horizontal" android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/CartListView"
+            app:layout_constraintTop_toBottomOf="@+id/CartListView" android:layout_marginTop="40dp"
+            android:textColor="#274046"/>
+    <TextView
+            android:fontFamily="@font/enanum"
+            android:text="총합:"
+            android:layout_width="160dp"
+            android:layout_height="31dp"
+            android:id="@+id/tv_total"
+            android:gravity="center_horizontal" android:textStyle="bold"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/CartListView"
+            app:layout_constraintTop_toBottomOf="@+id/CartListView" android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_total_sum" android:textColor="#274046"/>
+    <TextView
+            android:fontFamily="@font/enanum"
+            android:text="장바구니"
+            android:layout_width="164dp"
+            android:layout_height="40dp" android:id="@+id/textView"
+            android:gravity="center" android:textSize="24sp"
+            android:textStyle="bold"
+            android:textAlignment="center" app:layout_constraintStart_toStartOf="@+id/FeedListView"
+            app:layout_constraintEnd_toEndOf="@+id/FeedListView"
+            app:layout_constraintTop_toBottomOf="@+id/FeedListView" android:layout_marginTop="12dp"
+            app:layout_constraintHorizontal_bias="0.497" android:textColor="#274046"/>
+    <TextView
+            android:fontFamily="@font/enanum"
+            android:text="인식 내용"
+            android:layout_width="164dp"
+            android:layout_height="40dp" android:id="@+id/textView3"
+            android:textSize="24sp" android:textStyle="bold"
+            android:textAlignment="center" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp" app:layout_constraintHorizontal_bias="0.497" android:textColor="#274046"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

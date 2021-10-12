@@ -3,8 +3,10 @@ package com.example.hashtag.upload
 import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,7 +14,11 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.hashtag.FeedActivity
 import com.example.hashtag.R
+import com.example.hashtag.upload.model.Cart
+import com.example.hashtag.upload.model.CartFeedResponse
+import com.example.hashtag.upload.model.Feed
 import com.example.hashtag.upload.model.ResponseUpload
 import com.example.hashtag.upload.utils.FilePath
 import kotlinx.android.synthetic.main.activity_upload.*
@@ -96,6 +102,8 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
         val camera = "Camera$random"
 
         image_path = persistImage(image as Bitmap, camera)
+//        Toast.makeText(this, image_path.toString(), Toast.LENGTH_SHORT).show()
+
         action_image.setImageBitmap(BitmapFactory.decodeFile(image_path))
 
 
@@ -105,14 +113,27 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
         val image_bitmap = onSelectFromGalleryResult(data)
         action_image.setImageBitmap(image_bitmap)
     }
+    private   fun createCopyAndReturnRealPath(path: Uri) :String? {
 
+        var proj: Array<String> = arrayOf(MediaStore.Images.Media.DATA)
+        var c: Cursor? = contentResolver.query(path, proj, null, null, null)
+        var index = c?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+        c?.moveToFirst()
+
+        var result = index?.let { c?.getString(it) }
+
+        return result
+    }
     private fun onSelectFromGalleryResult(data: Intent?): Bitmap {
         var bm: Bitmap? = null
         if (data !=null) {
             try {
-                image_path = data.data?.let { FilePath.getPath(this, it) }
-                Log.d("Gallery", image_path ?: "")
-                bm = MediaStore.Images.Media.getBitmap(applicationContext.contentResolver, data.data)
+               // changeProfilePath = absolutelyPath(data!!.data)
+                image_path = data.data?.let { FilePath.getPath(this, it) }.toString()
+//                Toast.makeText(this, image_path.toString(), Toast.LENGTH_SHORT).show()
+                Log.d("Gallery",  image_path.toString())
+                Log.d("Before Gallery", image_path ?: data.data?.let { FilePath.getPath(this, it) }.toString())
+                bm = MediaStore.Images.Media.getBitmap(contentResolver, data.data)
             } catch (e : IOException) {
                 e.printStackTrace()
             }
@@ -161,7 +182,21 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
         intent.putExtra("key",List)
         startActivity(intent)
     }
+    override fun onSuccessFeed(List:ArrayList<Cart>, List1:ArrayList<Feed>) {
+        Log.d("success",List.toString())
+//            tv_1.setText(List.toString())
+        var intent = Intent(this, FeedActivity::class.java)
+        intent.putExtra("key",List)
+        startActivity(intent)
+    }
+    override fun onSuccess(message: String) {
+        AlertDialog.Builder(this)
+            .setTitle("분석 중")
+            .setMessage("이미지를 분석 중입니다.")
+            .setNegativeButton("OK", DialogInterface.OnClickListener{ dialogINterface, i ->
 
+            }).show()
+    }
     override fun onErrorServer(message: String) {
         AlertDialog.Builder(this)
             .setTitle("서버 연결에러")
@@ -180,6 +215,9 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
     override fun onQuit(message: String) {
         val asyncDialog : ProgressDialog = ProgressDialog(this@UploadActivity)
         asyncDialog.dismiss()
+    }
+    override fun onLoad(message: String) {
+        Toast.makeText(baseContext, "분석 중..", Toast.LENGTH_SHORT).show()
     }
 }
 

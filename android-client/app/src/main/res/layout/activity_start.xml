@@ -5,20 +5,25 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".StartActivity" android:background="#FDFFAB">
+        tools:context=".StartActivity">
 
     <Button
+            android:fontFamily="@font/enanum"
             android:text="쇼핑하기"
+            android:background="@drawable/button_background"
             android:layout_width="259dp"
             android:layout_height="70dp" android:id="@+id/startBtn"
-            android:layout_marginTop="148dp"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:background="#A8E6CF" android:textColor="@color/white"
-            android:textSize="34sp" android:textStyle="bold"/>
-    <ImageView
-            android:layout_width="262dp"
-            android:layout_height="275dp" app:srcCompat="@drawable/groceries" android:id="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="92dp" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white"
+            android:textSize="34sp" android:textStyle="bold" app:layout_constraintTop_toBottomOf="@+id/textView4"
+            android:layout_marginTop="188dp"/>
+    <TextView
+            android:text="ITrackU"
+            android:fontFamily="@font/enanum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView4"
+            android:textColor="#f7797d" android:textStyle="bold"
+            android:textSize="46sp" android:textAlignment="center" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="224dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
