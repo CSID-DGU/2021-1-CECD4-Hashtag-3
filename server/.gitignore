@@ -1,0 +1,8 @@
+venv/
+
+*.pyc
+__pycache__/
+flaskr/__pycache__/
+
+migrations/
+.env
