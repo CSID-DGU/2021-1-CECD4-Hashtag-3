@@ -50,6 +50,7 @@ https://github.com/AlexeyAB/darknet 을 이용해 이미지를 학습하였으�
 * 또한 Flask에서 ORM으로 작업하기 위해 SQLAlchemy를 이용합니다.     
 * [SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)     
 
+window에서 실행 시
 ```
 1. python -m venv venv
 2. .\venv\Scripts\activate
@@ -59,6 +60,13 @@ https://github.com/AlexeyAB/darknet 을 이용해 이미지를 학습하였으�
 6. flask db migrate
 7. flask db upgrade
 8. flask run
+```
+
+Ubuntu에서 실행 시
+```
+1. GPU사용을 위해 OpenCV 설정하기
+2. source venv/bin/activate
+3. flask run
 ```
 
 ## 결과
