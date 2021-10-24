@@ -23,18 +23,23 @@
              
 ## 실행 방법
 #### 데이터 셋
-상품 / 바코드 객체 인식을 위해 딥러닝 YOLO를 사용합니다.    
-https://github.com/AlexeyAB/darknet 을 이용해 이미지를 학습하였으며 학습된 이미지 예시는 아래와 같습니다.
+상품 및 바코드 객체 인식을 위해 딥러닝 YOLO를 사용합니다.    
+https://github.com/AlexeyAB/darknet 을 이용해 이미지를 학습하였으며 학습된 이미지 예시는 아래와 같습니다. 
+
+<p align="center">
+    <img src="/image-train/input.PNG" width="416" height="416" >
+    <img src="/image-train/output.PNG" width="416" height="416" >
+</p>
 
 #### 클라이언트
 
 #### 서버
-서버 구성을 위해 Flask를 사용하였습니다.   
-또한 Flask에서 ORM으로 작업하기 위해 SQLAlchemy를 이용합니다.     
-https://flask.palletsprojects.com/en/2.0.x/     
-https://flask-sqlalchemy.palletsprojects.com/en/2.x/     
+* 서버 구성을 위해 Flask를 사용하였습니다.   
+* https://flask.palletsprojects.com/en/2.0.x/     
+* 또한 Flask에서 ORM으로 작업하기 위해 SQLAlchemy를 이용합니다.     
+* https://flask-sqlalchemy.palletsprojects.com/en/2.x/     
 
-
+```
 1. python -m venv venv
 2. .\venv\Scripts\activate
 3. pip install -r requirements.txt
@@ -43,6 +48,6 @@ https://flask-sqlalchemy.palletsprojects.com/en/2.x/
 6. flask db migrate
 7. flask db upgrade
 8. flask run
-
+```
 
 
