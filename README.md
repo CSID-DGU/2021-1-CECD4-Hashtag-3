@@ -27,8 +27,8 @@
 https://github.com/AlexeyAB/darknet 을 이용해 이미지를 학습하였으며 학습된 이미지 예시는 아래와 같습니다. 
 
 <p align="center">
-    <img src="/image-train/input.PNG" width="416" height="416" >
-    <img src="/image-train/output.PNG" width="416" height="416" >
+    <img src="/image-train/input.PNG" width="300" height="300" >
+    <img src="/image-train/output.PNG" width="300" height="300" >
 </p>
 
 #### 클라이언트
