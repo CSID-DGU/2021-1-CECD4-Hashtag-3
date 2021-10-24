@@ -32,7 +32,7 @@ https://github.com/AlexeyAB/darknet 을 이용해 이미지를 학습하였으�
 </p><br/>
 
 ### 클라이언트<br/>
-https://github.com/JetBrains/kotlin
+* https://github.com/JetBrains/kotlin
 
 예시 화면
 <p align="center">
@@ -46,9 +46,9 @@ https://github.com/JetBrains/kotlin
        
 ### 서버<br/>
 * 서버 구성을 위해 Flask를 사용하였습니다.   
-* https://flask.palletsprojects.com/en/2.0.x/     
+* [Flask](https://flask.palletsprojects.com/en/2.0.x/)
 * 또한 Flask에서 ORM으로 작업하기 위해 SQLAlchemy를 이용합니다.     
-* https://flask-sqlalchemy.palletsprojects.com/en/2.x/     
+* [SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)     
 
 ```
 1. python -m venv venv
