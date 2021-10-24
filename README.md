@@ -34,7 +34,7 @@ https://github.com/AlexeyAB/darknet 을 이용해 이미지를 학습하였으�
 ### 클라이언트<br/>
 * https://github.com/JetBrains/kotlin
 
-예시 화면
+#### 스크린샷
 <p align="center">
     <img src="/image-train/1.jpg" width="150" height="300" >
     <img src="/image-train/2.jpg" width="150" height="300" >
