@@ -15,6 +15,9 @@ SQLALCHEMY_DATABASE_URI = f"mysql+mysqlconnector://{db['user']}:{db['password']}
 
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+CACHE_TYPE = "simple"
+
+
 MAIL_SERVER = 'smtp.gmail.com'
 MAIL_PORT = 465
 MAIL_USERNAME = os.getenv('MAIL_USERNAME')
