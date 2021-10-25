@@ -33,7 +33,7 @@ class FeedListAdapter (val context: Context, val ItemList: ArrayList<Feed>,val I
         val minusBtn = view2.findViewById<Button>(R.id.minusBtn)
         val feed = FeedActivity()
         val item = ItemList[position]
-        val item2 = ItemList2[position]
+
         name.text = item.name
         number.text = item.count.toString().plus("개가")
         if (item.command.toString().equals("1"))
@@ -81,7 +81,7 @@ class FeedListAdapter (val context: Context, val ItemList: ArrayList<Feed>,val I
                 }
                 if(flag!=1){
                     var dataList = ArrayList<Cart>()
-                    ItemList2.add(Cart(item.code,item.count,item.name,item.price))
+                    ItemList2.add(Cart(item.code,item.command,item.count,item.id,item.name,item.price))
                     Toast.makeText(context, "새로운 항목 장바구니에 추가", Toast.LENGTH_SHORT).show()
                 }
                 for (i in 0..ItemList.size-1){

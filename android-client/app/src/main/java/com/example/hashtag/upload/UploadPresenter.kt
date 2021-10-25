@@ -26,9 +26,9 @@ class UploadPresenter(val view: UploadView) {
             Log.d("전송할 이미지 path",image_path )
             view.onLoading("ll")
             val image: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
-            val requestFile = MultipartBody.Part.createFormData("requestFile", file.name, image)
+            val img = MultipartBody.Part.createFormData("img", file.name, image)
 
-            NetworkClient.initService().upload(requestFile).enqueue(object : retrofit2.Callback<List<ResponseUpload>> {
+            NetworkClient.initService().upload(img).enqueue(object : retrofit2.Callback<List<ResponseUpload>> {
 
                 override fun onResponse(call: Call<List<ResponseUpload>>?, response: Response<List<ResponseUpload>>?) {
                     view.onQuit("ll")
@@ -57,9 +57,9 @@ class UploadPresenter(val view: UploadView) {
             Log.d("전송할 이미지 path",image_path )
             view.onLoad("ll")
             val image: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
-            val requestFile = MultipartBody.Part.createFormData("requestFile", file.name, image)
+            val img = MultipartBody.Part.createFormData("img", file.name, image)
 
-            NetworkClient.initService().upload_video(requestFile).enqueue(object : retrofit2.Callback<List<ResponseUpload>> {
+            NetworkClient.initService().upload_video(img).enqueue(object : retrofit2.Callback<List<ResponseUpload>> {
 
                 override fun onResponse(call: Call<List<ResponseUpload>>?, response: Response<List<ResponseUpload>>?) {
                   view.onSuccess("분석 정상")
@@ -92,6 +92,25 @@ class UploadPresenter(val view: UploadView) {
                 }
             })
         }
+    fun get_login() {
+
+        NetworkClient.initService().get_cartfeed().enqueue(object : retrofit2.Callback<CartFeedResponse> {
+
+            override fun onResponse(call: Call<CartFeedResponse>?, response: Response<CartFeedResponse>?) {
+
+                response!!.body()?.let {
+                    var dataList = ArrayList<Cart>()
+                    dataList.addAll(it.carts)
+                    var dataList2 = ArrayList<Feed>()
+                    dataList2.addAll(it.feeds)
+                    view.onSuccessFeed(dataList, dataList2)
+                }
+            }
+            override fun onFailure(call: Call<CartFeedResponse>?, t: Throwable) {
+                view.onErrorServer(t.localizedMessage)
+            }
+        })
+    }
 
 }
 

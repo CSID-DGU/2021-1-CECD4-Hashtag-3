@@ -5,18 +5,29 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".StartActivity">
+        tools:context=".LoginActivity">
 
     <Button
-            android:fontFamily="@font/enanum"
-            android:text="쇼핑하기"
             android:background="@drawable/button_background"
+            android:fontFamily="@font/enanum"
+            android:text="카카오 로그인"
             android:layout_width="259dp"
             android:layout_height="70dp" android:id="@+id/btn_katok"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white"
             android:textSize="34sp" android:textStyle="bold" app:layout_constraintTop_toBottomOf="@+id/textView4"
             android:layout_marginTop="188dp"/>
+    <Button
+            android:background="@drawable/button2_background"
+            android:fontFamily="@font/enanum"
+            android:text="로그인"
+            android:layout_width="259dp"
+            android:layout_height="70dp" android:id="@+id/btn_unknown"
+            android:textColor="@color/white"
+            android:textSize="34sp" android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/btn_katok"
+            app:layout_constraintStart_toStartOf="@+id/btn_katok" app:layout_constraintTop_toBottomOf="@+id/btn_katok"
+            android:layout_marginTop="20dp" app:layout_constraintHorizontal_bias="0.0"/>
     <TextView
             android:text="ITrackU"
             android:fontFamily="@font/enanum"

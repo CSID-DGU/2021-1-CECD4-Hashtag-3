@@ -21,12 +21,11 @@ import com.example.hashtag.Constants.TAG
 import com.example.hashtag.upload.CartActivity
 import com.example.hashtag.upload.UploadPresenter
 import com.example.hashtag.upload.UploadView
-import com.example.hashtag.upload.model.Cart
-import com.example.hashtag.upload.model.CartFeedResponse
-import com.example.hashtag.upload.model.Feed
-import com.example.hashtag.upload.model.ResponseUpload
+import com.example.hashtag.upload.model.*
 import kotlinx.android.synthetic.main.activity_video.*
 import pub.devrel.easypermissions.AppSettingsDialog
+import retrofit2.Call
+import retrofit2.Response
 import java.io.File
 import java.io.Serializable
 import java.nio.ByteBuffer
@@ -55,7 +54,8 @@ class VideoActivity : AppCompatActivity(),UploadView, Serializable, EasyPermissi
 
         complete_btn.setOnClickListener {
             onDestroy()
-           presenter?.get_cartfeed()
+            val intentss = Intent(this@VideoActivity, FeedActivity::class.java)
+            startActivity(intentss)
         }
 
         outputDirectory = getOutputDirectory()
@@ -64,6 +64,7 @@ class VideoActivity : AppCompatActivity(),UploadView, Serializable, EasyPermissi
 
         var second: Int = 0
         kotlin.concurrent.timer(period = 1000,initialDelay = 1000){
+
            takePhoto()
         }
 
@@ -248,12 +249,7 @@ class VideoActivity : AppCompatActivity(),UploadView, Serializable, EasyPermissi
         Log.d("success",List.toString())
     }
     override fun onSuccessFeed(List:ArrayList<Cart>, List1:ArrayList<Feed>) {
-        Log.d("success",List.toString())
-//            tv_1.setText(List.toString())
-        var intent = Intent(this, FeedActivity::class.java)
-        intent.putExtra("cart",List)
-        intent.putExtra("feed",List1)
-        startActivity(intent)
+
     }
     override fun onSuccess(message: String) {
     }

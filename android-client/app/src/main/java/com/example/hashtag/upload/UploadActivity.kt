@@ -178,14 +178,14 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
     override fun onSuccessupload(List:ArrayList<ResponseUpload>) {
         Log.d("success",List.toString())
 //            tv_1.setText(List.toString())
-        var intent = Intent(this, CartActivity::class.java)
+        var intent = Intent(this@UploadActivity, CartActivity::class.java)
         intent.putExtra("key",List)
         startActivity(intent)
     }
     override fun onSuccessFeed(List:ArrayList<Cart>, List1:ArrayList<Feed>) {
         Log.d("success",List.toString())
 //            tv_1.setText(List.toString())
-        var intent = Intent(this, FeedActivity::class.java)
+        var intent = Intent(this@UploadActivity, FeedActivity::class.java)
         intent.putExtra("key",List)
         startActivity(intent)
     }
