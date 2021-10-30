@@ -27,6 +27,7 @@ class PayActivity : AppCompatActivity() {
         var result_string:String = "\n"
         val list = intent.getSerializableExtra("list") as? ArrayList<ResponseUpload>
         val total = intent.getSerializableExtra("total") as? String
+
         if (list != null) {
 
             for (p in list){

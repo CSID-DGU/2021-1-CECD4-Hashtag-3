@@ -49,7 +49,7 @@ interface ApiService {
     @POST("/tracking")
     fun upload_video(
         @Part img:MultipartBody.Part
-    ): Call<List<ResponseUpload>>
+    ): Call<List<VideoResponse>>
     @GET("/getCartFeed")
     fun get_cartfeed(): Call<CartFeedResponse>
     @GET("/oauth/kakao")
@@ -60,11 +60,26 @@ interface ApiService {
         @Part("email") email: RequestBody,
         @Part("item") item: RequestBody
     ): Call<EmailResponse>
-
+    @Multipart
     @POST("/mail")
+    @Streaming
     fun call_email2(
         @Part("email") email: RequestBody,
         @Part("item") item: RequestBody
     ): Call<ResponseBody>
-
+    @Multipart
+    @POST("/oauth/register")
+    fun register(
+        @Part("id") id: RequestBody,
+        @Part("password") pass: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("name") name: RequestBody,
+        @Part("phone") phone: RequestBody
+    ): Call<RegisterResponse>
+    @Multipart
+    @POST("/oauth/login")
+    fun login(
+        @Part("id") id: RequestBody,
+        @Part("password") pass: RequestBody
+    ): Call<LoginResponse>
 }

@@ -3,8 +3,7 @@ package com.example.hashtag.upload.model
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class ResponseUpload(
-
+data class VideoResponse(
     @SerializedName("count")
     var count:Int,
 
@@ -15,8 +14,8 @@ data class ResponseUpload(
     val price:Int,
 
     @SerializedName("success")
-    val success:String
-) : Serializable
+    val success:String,
 
-
-
+    @SerializedName("result")
+    var result: String
+): Serializable

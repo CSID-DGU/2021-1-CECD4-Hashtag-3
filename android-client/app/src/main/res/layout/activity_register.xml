@@ -4,7 +4,7 @@
                                                    xmlns:tools="http://schemas.android.com/tools"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
-                                                   tools:context=".RegisterActivity" android:background="#FFDAC7">
+                                                   tools:context=".RegisterActivity">
 
     <EditText
             android:fontFamily="@font/enanum"
@@ -71,7 +71,7 @@
     <Button
             android:fontFamily="@font/enanum"
             android:background="@drawable/button_background"
-            android:id="@+id/btn_register"
+            android:id="@+id/btn_katok"
             android:layout_width="237dp"
             android:layout_height="62dp"
             android:text="회원가입"

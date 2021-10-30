@@ -2,10 +2,16 @@ package com.example.hashtag.upload
 
 import android.text.TextUtils
 import android.util.Log
+import android.widget.Toast
+import com.example.hashtag.CartListAdapter
+import com.example.hashtag.FeedListAdapter
 import com.example.hashtag.upload.model.*
+import kotlinx.android.synthetic.main.activity_cart.*
+import kotlinx.android.synthetic.main.activity_feed.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Response
@@ -13,6 +19,7 @@ import java.io.File
 
 
 class UploadPresenter(val view: UploadView) {
+
 
     fun upload(image: String) {
         if (TextUtils.isEmpty(image)) {
@@ -32,11 +39,18 @@ class UploadPresenter(val view: UploadView) {
 
                 override fun onResponse(call: Call<List<ResponseUpload>>?, response: Response<List<ResponseUpload>>?) {
                     view.onQuit("ll")
-                    var dataList = ArrayList<ResponseUpload>()
+                    response!!.body()?.let {
+                        var dataList = ArrayList<ResponseUpload>()
                     dataList.addAll(response!!.body()!!)
-                    Log.d("image is", image_path)
-                    Log.d("datalist is....",dataList.toString())
-                    response.body()?.let { view.onSuccessupload(dataList)
+
+                    val item = dataList[0]
+                    if(item.success.contains("false")){
+                        view.onSuccessEmpty("empty")
+                    }else{
+                        response.body()?.let {
+                            view.onSuccessupload(dataList)
+                        }
+                    }
                     }
                 }
                 override fun onFailure(call: Call<List<ResponseUpload>>?, t: Throwable) {
@@ -59,14 +73,24 @@ class UploadPresenter(val view: UploadView) {
             val image: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
             val img = MultipartBody.Part.createFormData("img", file.name, image)
 
-            NetworkClient.initService().upload_video(img).enqueue(object : retrofit2.Callback<List<ResponseUpload>> {
+            NetworkClient.initService().upload_video(img).enqueue(object : retrofit2.Callback<List<VideoResponse>> {
 
-                override fun onResponse(call: Call<List<ResponseUpload>>?, response: Response<List<ResponseUpload>>?) {
-                  view.onSuccess("분석 정상")
-                    file.delete()
+                override fun onResponse(call: Call<List<VideoResponse>>?, response: Response<List<VideoResponse>>?) {
+                    response!!.body()?.let {
+                        var dataList = ArrayList<VideoResponse>()
+                        dataList.addAll(response!!.body()!!)
 
+                        val item = dataList.get(0)
+                        if(item.success.contains("false")){
+                            view.onSuccessEmpty("empty")
+                        }else{
+                            response.body()?.let {
+                                view.onSuccess(dataList)
+                            }
+                        }
+                    }
                 }
-                override fun onFailure(call: Call<List<ResponseUpload>>?, t: Throwable) {
+                override fun onFailure(call: Call<List<VideoResponse>>?, t: Throwable) {
                     view.onErrorServer("서버 오류")
                     file.delete()
                 }

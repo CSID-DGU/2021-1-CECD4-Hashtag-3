@@ -10,31 +10,32 @@
     <Button
             android:background="@drawable/button_background"
             android:fontFamily="@font/enanum"
-            android:text="카카오 로그인"
+            android:text="로그인"
             android:layout_width="259dp"
-            android:layout_height="70dp" android:id="@+id/btn_katok"
+            android:layout_height="70dp" android:id="@+id/btn_go_login"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white"
             android:textSize="34sp" android:textStyle="bold" app:layout_constraintTop_toBottomOf="@+id/textView4"
-            android:layout_marginTop="188dp"/>
+            android:layout_marginTop="120dp"/>
     <Button
             android:background="@drawable/button2_background"
             android:fontFamily="@font/enanum"
-            android:text="로그인"
+            android:text="회원가입"
             android:layout_width="259dp"
-            android:layout_height="70dp" android:id="@+id/btn_unknown"
+            android:layout_height="70dp" android:id="@+id/btn_go_register"
             android:textColor="@color/white"
             android:textSize="34sp" android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/btn_katok"
-            app:layout_constraintStart_toStartOf="@+id/btn_katok" app:layout_constraintTop_toBottomOf="@+id/btn_katok"
+            app:layout_constraintEnd_toEndOf="@+id/btn_go_login"
+            app:layout_constraintStart_toStartOf="@+id/btn_go_login"
+            app:layout_constraintTop_toBottomOf="@+id/btn_go_login"
             android:layout_marginTop="20dp" app:layout_constraintHorizontal_bias="0.0"/>
     <TextView
-            android:text="ITrackU"
+            android:text="어서오세요!\n 환영합니다."
             android:fontFamily="@font/enanum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView4"
-            android:textColor="#f7797d" android:textStyle="bold"
-            android:textSize="46sp" android:textAlignment="center" app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="178dp"
+            android:layout_height="83dp" android:id="@+id/textView4"
+            android:textColor="@color/black" android:textStyle="bold"
+            android:textSize="34sp" android:textAlignment="center" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="224dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

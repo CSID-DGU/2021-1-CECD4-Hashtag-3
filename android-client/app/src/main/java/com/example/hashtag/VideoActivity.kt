@@ -1,31 +1,33 @@
 package com.example.hashtag
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import pub.devrel.easypermissions.EasyPermissions
 import android.Manifest
 import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.example.hashtag.Constants.FILENAME_FORMAT
 import com.example.hashtag.Constants.REQUEST_CODE_CAMERA_PERMISSION
 import com.example.hashtag.Constants.TAG
-import com.example.hashtag.upload.CartActivity
 import com.example.hashtag.upload.UploadPresenter
 import com.example.hashtag.upload.UploadView
-import com.example.hashtag.upload.model.*
+import com.example.hashtag.upload.model.Cart
+import com.example.hashtag.upload.model.Feed
+import com.example.hashtag.upload.model.ResponseUpload
+import com.example.hashtag.upload.model.VideoResponse
 import kotlinx.android.synthetic.main.activity_video.*
+import okhttp3.internal.notifyAll
+import okhttp3.internal.wait
 import pub.devrel.easypermissions.AppSettingsDialog
-import retrofit2.Call
-import retrofit2.Response
+import pub.devrel.easypermissions.EasyPermissions
 import java.io.File
 import java.io.Serializable
 import java.nio.ByteBuffer
@@ -33,7 +35,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import kotlin.collections.ArrayList
 
 
 typealias LumaListener = (luma: Double) -> Unit
@@ -51,11 +52,19 @@ class VideoActivity : AppCompatActivity(),UploadView, Serializable, EasyPermissi
         setContentView(R.layout.activity_video)
         requestPermission()
         presenter = UploadPresenter(this)
-
+        val login_id = intent.getSerializableExtra("current_user_id") as? String
+        val login_email = intent.getSerializableExtra("current_user_email") as? String
         complete_btn.setOnClickListener {
-            onDestroy()
-            val intentss = Intent(this@VideoActivity, FeedActivity::class.java)
-            startActivity(intentss)
+            val lock = Any()
+            synchronized(lock){
+                lock.notifyAll()
+                cameraExecutor.shutdown()
+                val intentss = Intent(this@VideoActivity, FeedActivity::class.java)
+                intentss.putExtra("current_user_id",login_id)
+                intentss.putExtra("current_user_email",login_email)
+                startActivity(intentss)
+            }
+
         }
 
         outputDirectory = getOutputDirectory()
@@ -107,6 +116,7 @@ class VideoActivity : AppCompatActivity(),UploadView, Serializable, EasyPermissi
 //                    Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
 //                    Log.d(TAG, msg)
                     image_path?.let { presenter?.upload_video(it)}
+
 
                 }
             })
@@ -165,10 +175,10 @@ class VideoActivity : AppCompatActivity(),UploadView, Serializable, EasyPermissi
             mediaDir else filesDir
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        cameraExecutor.shutdown()
-    }
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        cameraExecutor.wait()
+//    }
 
     private fun requestPermission() {
 
@@ -251,13 +261,19 @@ class VideoActivity : AppCompatActivity(),UploadView, Serializable, EasyPermissi
     override fun onSuccessFeed(List:ArrayList<Cart>, List1:ArrayList<Feed>) {
 
     }
-    override fun onSuccess(message: String) {
+    override fun onSuccess(List:ArrayList<VideoResponse>) {
+        var result_string:String=""
+       for (i in 0..List.size-1){
+           result_string+=List.get(i).result
+           result_string+="\n"
+       }
+        tv_result.setText(result_string)
     }
     override fun onErrorServer(message: String) {
-        Toast.makeText(baseContext, "서버에러", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(baseContext, "서버에러", Toast.LENGTH_SHORT).show()
     }
     override fun onLoad(message: String) {
-        Toast.makeText(baseContext, "분석 중..", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(baseContext, "분석 중..", Toast.LENGTH_SHORT).show()
     }
     override fun onLoading(message: String) {
         val asyncDialog : ProgressDialog = ProgressDialog(this@VideoActivity)
@@ -269,6 +285,9 @@ class VideoActivity : AppCompatActivity(),UploadView, Serializable, EasyPermissi
     override fun onQuit(message: String) {
         val asyncDialog : ProgressDialog = ProgressDialog(this@VideoActivity)
         asyncDialog.dismiss()
+    }
+    override fun onSuccessEmpty(message: String){
+        Toast.makeText(baseContext, "디코딩 정보가 없습니다.사진을 다시 업로드하세요.", Toast.LENGTH_SHORT).show()
     }
 
 }

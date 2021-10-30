@@ -14,7 +14,7 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
 
-        val intent_startBtn = findViewById(R.id.btn_katok) as Button
+        val intent_startBtn = findViewById(R.id.btn_go_login) as Button
         intent_startBtn.setOnClickListener {
             val keyHash = Utility.getKeyHash(this)
             Log.d("now is the ", keyHash)

@@ -1,15 +1,13 @@
 package com.example.hashtag.upload
 
-import com.example.hashtag.upload.model.Cart
-import com.example.hashtag.upload.model.CartFeedResponse
-import com.example.hashtag.upload.model.Feed
-import com.example.hashtag.upload.model.ResponseUpload
+import com.example.hashtag.upload.model.*
 
 interface UploadView {
     fun isEmpty(msg: String)
     fun onSuccessupload(List:ArrayList<ResponseUpload>)
+    fun onSuccessEmpty(message: String)
     fun onSuccessFeed(List:ArrayList<Cart>,List1:ArrayList<Feed>)
-    fun onSuccess(message: String)
+    fun onSuccess(List:ArrayList<VideoResponse>)
     fun onErrorServer(message: String)
     fun onLoad(message: String)
     fun onLoading(message: String)

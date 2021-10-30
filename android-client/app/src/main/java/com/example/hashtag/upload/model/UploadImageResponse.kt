@@ -3,20 +3,16 @@ package com.example.hashtag.upload.model
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class ResponseUpload(
-
+data class UploadImageResponse(
     @SerializedName("count")
     var count:Int,
+
 
     @SerializedName("name")
     val name:String,
 
+
     @SerializedName("price")
-    val price:Int,
+    val price:Int
 
-    @SerializedName("success")
-    val success:String
 ) : Serializable
-
-
-

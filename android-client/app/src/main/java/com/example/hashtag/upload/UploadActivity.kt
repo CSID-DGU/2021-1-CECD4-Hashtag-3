@@ -16,10 +16,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.hashtag.FeedActivity
 import com.example.hashtag.R
-import com.example.hashtag.upload.model.Cart
-import com.example.hashtag.upload.model.CartFeedResponse
-import com.example.hashtag.upload.model.Feed
-import com.example.hashtag.upload.model.ResponseUpload
+import com.example.hashtag.upload.model.*
 import com.example.hashtag.upload.utils.FilePath
 import kotlinx.android.synthetic.main.activity_upload.*
 import java.io.File
@@ -31,7 +28,8 @@ import java.util.*
 import kotlin.random.Random
 
 class UploadActivity : AppCompatActivity(), UploadView, Serializable{
-
+    val login_id = intent.getSerializableExtra("current_user_id") as? String
+    val login_email = intent.getSerializableExtra("current_user_email") as? String
     private var REQUEST_IMAGE_GALLERY = 0
     private var REQUEST_IMAGE_CAMERA = 1
     private var REQUEST_PERMISSION = 2
@@ -180,6 +178,8 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
 //            tv_1.setText(List.toString())
         var intent = Intent(this@UploadActivity, CartActivity::class.java)
         intent.putExtra("key",List)
+        intent.putExtra("current_user_id",login_id)
+        intent.putExtra("current_user_email",login_email)
         startActivity(intent)
     }
     override fun onSuccessFeed(List:ArrayList<Cart>, List1:ArrayList<Feed>) {
@@ -189,7 +189,7 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
         intent.putExtra("key",List)
         startActivity(intent)
     }
-    override fun onSuccess(message: String) {
+    override fun onSuccess(List:ArrayList<VideoResponse>) {
         AlertDialog.Builder(this)
             .setTitle("분석 중")
             .setMessage("이미지를 분석 중입니다.")
@@ -218,6 +218,9 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
     }
     override fun onLoad(message: String) {
         Toast.makeText(baseContext, "분석 중..", Toast.LENGTH_SHORT).show()
+    }
+    override fun onSuccessEmpty(message: String){
+        Toast.makeText(baseContext, "디코딩 정보가 없습니다.사진을 다시 업로드하세요.", Toast.LENGTH_SHORT).show()
     }
 }
 

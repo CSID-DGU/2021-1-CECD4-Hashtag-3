@@ -41,6 +41,8 @@ class FeedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
+        val login_id = intent.getSerializableExtra("current_user_id") as? String
+        val login_email = intent.getSerializableExtra("current_user_email") as? String
         NetworkClient.initService().get_cartfeed().enqueue(object : retrofit2.Callback<CartFeedResponse> {
 
             override fun onResponse(call: Call<CartFeedResponse>?, response: Response<CartFeedResponse>?) {
@@ -69,6 +71,8 @@ class FeedActivity : AppCompatActivity() {
             val intentss = Intent(this@FeedActivity, Pay2Activity::class.java)
             intentss.putExtra("list",pathData)
             intentss.putExtra("total", total)
+            intentss.putExtra("current_user_id",login_id)
+            intentss.putExtra("current_user_email",login_email)
             Log.d("pass this", pathData.toString())
             startActivity(intentss)
             Toast.makeText(baseContext, "서버에러", Toast.LENGTH_SHORT).show()

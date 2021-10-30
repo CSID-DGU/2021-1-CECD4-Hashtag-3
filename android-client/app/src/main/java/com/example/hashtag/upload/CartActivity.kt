@@ -14,6 +14,8 @@ class CartActivity : AppCompatActivity() {
     var dataList1 = ArrayList<ResponseUpload>()
     var total:String? = null
 
+
+
     fun ReviseTotal(setString: String) {
         tv_total_sum.setText(setString)
         total = setString
@@ -25,7 +27,8 @@ class CartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
-
+        val login_id = intent.getSerializableExtra("current_user_id") as? String
+        val login_email = intent.getSerializableExtra("current_user_email") as? String
         val pathData = intent.getSerializableExtra("key") as? ArrayList<ResponseUpload>
 
         if(pathData!=null) {
@@ -46,6 +49,8 @@ class CartActivity : AppCompatActivity() {
 
         addBtn.setOnClickListener {
             val intents = Intent(this@CartActivity, MenuActivity::class.java)
+            intents.putExtra("current_user_id",login_id)
+            intents.putExtra("current_user_email",login_email)
             startActivity(intents)
         }
 

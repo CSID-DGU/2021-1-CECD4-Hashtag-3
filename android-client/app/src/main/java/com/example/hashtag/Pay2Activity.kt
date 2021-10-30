@@ -6,31 +6,34 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.example.hashtag.upload.CartActivity
 import com.example.hashtag.upload.model.Cart
-import com.example.hashtag.upload.model.EmailResponse
 import com.example.hashtag.upload.model.NetworkClient
-import com.example.hashtag.upload.model.ResponseUpload
 import kotlinx.android.synthetic.main.activity_pay.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
+import java.io.ByteArrayOutputStream
 
 class Pay2Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
         var context:Context=this
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pay2)
         var result_string:String = "\n"
         val list = intent.getSerializableExtra("list") as? ArrayList<Cart>
         val total = intent.getSerializableExtra("total") as? String
+        val login_id = intent.getSerializableExtra("current_user_id") as? String
+        val login_email = intent.getSerializableExtra("current_user_email") as? String
         if (list != null) {
 
             for (p in list){
@@ -42,6 +45,7 @@ class Pay2Activity : AppCompatActivity() {
             result_string += total
         }
         tv_pay.setText(result_string)
+        edit_email.setText(login_email)
 
         emailBtn.setOnClickListener {
             if(edit_email.getText().toString().contains("@"))
@@ -57,7 +61,9 @@ class Pay2Activity : AppCompatActivity() {
                         asyncDialog.dismiss()
                         val image_url =response.body()!!.byteStream()
                         var bitmap:Bitmap = BitmapFactory.decodeStream(image_url)
-
+                        val stream = ByteArrayOutputStream()
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+                        val byteArray: ByteArray = stream.toByteArray()
                         Log.d("response email",response.body().toString())
                         val builder = AlertDialog.Builder(context)
 
@@ -66,12 +72,14 @@ class Pay2Activity : AppCompatActivity() {
                             .setPositiveButton("아니오",
                                 DialogInterface.OnClickListener { dialog, id ->
                                     val intentss = Intent(this@Pay2Activity, QrActivity::class.java)
-                                    intentss.putExtra("bitmap",bitmap)
+                                    intentss.putExtra("byteArray",byteArray)
                                     startActivity(intentss)
                                 })
                             .setNegativeButton("네",
                                 DialogInterface.OnClickListener { dialog, id ->
                                     val intents = Intent(this@Pay2Activity, CartActivity::class.java)
+                                    intents.putExtra("current_user_id",login_id)
+                                    intents.putExtra("current_user_email",login_email)
                                     startActivity(intents)
                                 })
 
