@@ -36,11 +36,17 @@ https://github.com/AlexeyAB/darknet 을 이용해 이미지를 학습하였으�
 
 #### 스크린샷
 <p align="center">
-    <img src="/image-train/1.jpg" width="150" height="300" >
-    <img src="/image-train/2.jpg" width="150" height="300" >
-    <img src="/image-train/3.jpg" width="150" height="300" >
-    <img src="/image-train/4.jpg" width="150" height="300" >
-    <img src="/image-train/5.jpg" width="150" height="300" >
+    <img src="https://user-images.githubusercontent.com/62542277/140029065-3a99217e-6250-4cb8-aea3-5af29fa6886d.png" width="150" height="300" >
+    <img src="https://user-images.githubusercontent.com/62542277/140029084-724cb8d0-8a36-4887-bd1a-3e7bcbe12533.png" width="150" height="300" >
+    <img src="https://user-images.githubusercontent.com/62542277/140029250-9511fadc-da48-4b1f-918b-3adddc4b102f.png" width="150" height="300" >
+    <img src="https://user-images.githubusercontent.com/62542277/140029107-6b1a7d52-55bc-4595-bdaa-166c6ca1c495.png" width="150" height="300" >
+   <img src="https://user-images.githubusercontent.com/62542277/140029161-9e918d30-2f3e-4b4c-a703-41008176f8d7.png" width="150" height="300" >
+   <img src="https://user-images.githubusercontent.com/62542277/140029337-b3915b91-1d28-4ed0-a382-e6db939d8aa6.png" width="150" height="300" >
+   <img src="https://user-images.githubusercontent.com/62542277/140029183-27a5977a-b6ce-4095-aa0c-4a81f6c897cc.png" width="150" height="300" >
+   <img src="https://user-images.githubusercontent.com/62542277/140029203-9ab898d8-e013-4c5a-92af-b5587f0a3e29.png" width="150" height="300" >
+   <img src="https://user-images.githubusercontent.com/62542277/140029209-79052297-e4fe-4c60-84cc-515a679c9e7c.png" width="150" height="300" >
+   <img src="https://user-images.githubusercontent.com/62542277/140029218-00404560-1566-41e2-9c14-81db039dba33.png" width="150" height="300" >
+ 
 </p><br/>
 
        
