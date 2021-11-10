@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".Login2Fragment" android:background="#E6D2C9">
+
+    <!-- TODO: Update blank fragment layout -->
+    <EditText
+            android:fontFamily="@font/enanum"
+            android:background="@color/white"
+            android:id="@+id/tv_id2"
+            android:layout_width="257dp"
+            android:layout_height="44dp"
+            android:ems="10"
+            android:hint="  아이디"
+            android:inputType="textPersonName"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="180dp"
+    />
+    <EditText
+            android:layout_gravity="center|top"
+            android:fontFamily="@font/enanum"
+            android:id="@+id/tv_pass2"
+            android:layout_width="257dp"
+            android:layout_height="44dp"
+            android:ems="10"
+            android:hint="  비밀번호"
+            android:background="@color/white"
+            android:inputType="textPassword"
+            android:layout_marginTop="240dp"
+            app:layout_constraintHorizontal_bias="0.0"/>
+    <Button
+            android:layout_gravity="center|top"
+            android:layout_marginTop="380dp"
+            android:fontFamily="@font/enanum"
+            android:background="#4E574D"
+            android:id="@+id/login"
+            android:layout_width="237dp"
+            android:layout_height="62dp"
+            android:text="로그인"
+            android:textSize="20sp"
+
+            android:textColor="@color/white"/>
+    <Button
+            android:layout_gravity="center|top"
+            android:fontFamily="@font/enanum"
+            android:background="@drawable/kakao_login_medium_narrow"
+            android:id="@+id/kaka"
+            android:layout_width="237dp"
+            android:layout_height="62dp"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="460dp"
+            app:layout_constraintHorizontal_bias="0.0"/>
+
+</FrameLayout>

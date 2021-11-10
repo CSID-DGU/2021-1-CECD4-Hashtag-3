@@ -21,7 +21,7 @@ import java.io.File
 class UploadPresenter(val view: UploadView) {
 
 
-    fun upload(image: String) {
+    fun upload(image: String, id:String, email:String) {
         if (TextUtils.isEmpty(image)) {
             Log.d("이미지 선택 미완료", image)
             view.isEmpty("사진 선택x")
@@ -48,7 +48,7 @@ class UploadPresenter(val view: UploadView) {
                         view.onSuccessEmpty("empty")
                     }else{
                         response.body()?.let {
-                            view.onSuccessupload(dataList)
+                            view.onSuccessupload(dataList, id, email)
                         }
                     }
                     }

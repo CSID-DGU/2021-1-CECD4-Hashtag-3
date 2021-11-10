@@ -4,7 +4,7 @@ import com.example.hashtag.upload.model.*
 
 interface UploadView {
     fun isEmpty(msg: String)
-    fun onSuccessupload(List:ArrayList<ResponseUpload>)
+    fun onSuccessupload(List:ArrayList<ResponseUpload>, id:String, email:String)
     fun onSuccessEmpty(message: String)
     fun onSuccessFeed(List:ArrayList<Cart>,List1:ArrayList<Feed>)
     fun onSuccess(List:ArrayList<VideoResponse>)

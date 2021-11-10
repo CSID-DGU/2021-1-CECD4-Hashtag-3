@@ -11,7 +11,7 @@
             android:fontFamily="@font/enanum"
             android:text="상품 추가하기"
             android:layout_width="267dp"
-            android:layout_height="50dp" android:id="@+id/addBtn"
+            android:layout_height="50dp" android:id="@+id/addBtnc"
             android:textColor="@color/white"             android:background="@drawable/button_background"
 
             android:textSize="20sp" android:textStyle="bold"
@@ -28,9 +28,9 @@
     <TextView
             android:text="총합:"
             android:layout_width="78dp"
-            android:layout_height="29dp" android:id="@+id/tv_total"
+            android:layout_height="29dp" android:id="@+id/tv_total_f"
             android:gravity="center_horizontal" android:textStyle="bold"
-            android:textSize="16sp" app:layout_constraintEnd_toStartOf="@+id/tv_total_sum"
+            android:textSize="16sp" app:layout_constraintEnd_toStartOf="@+id/tv_total_sum_f"
             android:layout_marginEnd="8dp"
             app:layout_constraintTop_toBottomOf="@+id/mainListView" android:layout_marginTop="52dp"
             app:layout_constraintStart_toStartOf="@+id/mainListView" app:layout_constraintHorizontal_bias="1.0"
@@ -38,7 +38,7 @@
     <TextView
             android:text="0"
             android:layout_width="160dp"
-            android:layout_height="31dp" android:id="@+id/tv_total_sum"
+            android:layout_height="31dp" android:id="@+id/tv_total_sum_f"
             android:gravity="center_horizontal" android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/mainListView"
@@ -48,12 +48,12 @@
             android:fontFamily="@font/enanum"
             android:text="결제하기"
             android:layout_width="267dp"
-            android:layout_height="50dp" android:id="@+id/payyBtn"
+            android:layout_height="50dp" android:id="@+id/payBtnc"
             android:background="@drawable/button2_background"
-            android:textColor="@color/white"
+            android:textColor="#5D3D37"
             android:textSize="20sp" android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/mainListView"
-            app:layout_constraintTop_toBottomOf="@+id/addBtn"
+            app:layout_constraintTop_toBottomOf="@+id/addBtnc"
             app:layout_constraintEnd_toEndOf="@+id/mainListView" app:layout_constraintHorizontal_bias="0.486"
     />
     <TextView

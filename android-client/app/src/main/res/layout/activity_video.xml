@@ -8,7 +8,7 @@
         tools:context=".VideoActivity">
     <Button
             android:fontFamily="@font/enanum"
-            android:id="@+id/complete_btn"
+            android:id="@+id/complete_btn2"
             android:layout_width="246dp"
             android:layout_height="65dp"
             android:elevation="2dp"
@@ -20,9 +20,9 @@
             app:layout_constraintEnd_toEndOf="@+id/tv_result"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.495" app:layout_constraintTop_toBottomOf="@+id/tv_result"
-            app:layout_constraintVertical_bias="0.0"/>
+            app:layout_constraintVertical_bias="0.184"/>
     <androidx.camera.view.PreviewView
-            android:id="@+id/viewFinder"
+            android:id="@+id/viewFinder2"
             android:layout_width="392dp"
             android:layout_height="433dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
@@ -32,9 +32,9 @@
             android:fontFamily="@font/enanum"
             android:text="아직 인식된 내용이 없습니다."
             android:layout_width="367dp"
-            android:layout_height="148dp" android:id="@+id/tv_result"
+            android:layout_height="132dp" android:id="@+id/tv_result"
             android:gravity="center" android:background="@drawable/tv_background"
-            app:layout_constraintTop_toBottomOf="@+id/viewFinder" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewFinder2" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="4dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

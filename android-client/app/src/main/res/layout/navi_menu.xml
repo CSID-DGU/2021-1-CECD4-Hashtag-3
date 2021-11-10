@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--    id값은 어떤 항목을 선택했는지 구분하기 위해 NaviActivity.kt에서 사용-->
+    <item
+            android:id="@+id/cartFragment"
+            android:title="카트"
+            android:icon="@drawable/shoppingcart"/>
+    <item
+            android:id="@+id/homeFragment"
+            android:title="홈"
+            android:icon="@drawable/home"/>
+    <item
+            android:id="@+id/myPageFragment"
+            android:title="마이페이지"
+            android:icon="@drawable/user"/>
+</menu>

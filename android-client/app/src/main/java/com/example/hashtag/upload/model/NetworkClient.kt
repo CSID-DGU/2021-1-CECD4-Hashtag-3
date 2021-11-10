@@ -52,6 +52,12 @@ interface ApiService {
     ): Call<List<VideoResponse>>
     @GET("/getCartFeed")
     fun get_cartfeed(): Call<CartFeedResponse>
+    @Multipart
+    @POST("/updateFeed")
+    fun updateFeed(
+        @Part("feeds") feeds: RequestBody,
+        @Part("carts") carts: RequestBody
+    ): Call<CartFeedResponse>
     @GET("/oauth/kakao")
     fun get_login(): Call<ResponseBody>
     @Multipart

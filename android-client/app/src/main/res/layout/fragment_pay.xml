@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".PayFragment">
+
+    <TextView
+            android:scrollbars="vertical"
+            android:fontFamily="@font/enanum"
+            android:text="내역이 없습니다."
+            android:layout_width="341dp"
+            android:layout_height="350dp" android:id="@+id/tv_pay"
+
+            android:layout_marginTop="100dp"
+            android:layout_gravity="center|top"
+            android:background="@drawable/tv_background"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:textColor="#274046" android:textAlignment="center" android:gravity="center"/>
+    <TextView
+            android:fontFamily="@font/enanum"
+            android:text="결제 내역"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView2"
+            android:gravity="center|top" android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="40dp"
+            android:textColor="#274046" android:layout_gravity="center|top"/>
+    <Button
+            android:background="@drawable/button_brown"
+            android:fontFamily="@font/enanum"
+            android:text="결제하기"
+            android:layout_width="319dp"
+            android:layout_height="61dp" android:id="@+id/emailBtn"
+            android:textColor="#5D3D37"
+            android:textSize="24sp" android:textStyle="bold"
+            android:layout_marginTop="520dp"
+            android:layout_gravity="center|top"
+    />
+    <EditText
+            android:fontFamily="@font/enanum"
+            android:layout_width="319dp"
+            android:layout_height="39dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/edit_email"
+            android:hint="이메일을 입력하세요."
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#274046"
+            android:layout_marginTop="460dp"
+            android:layout_gravity="center|top"/>
+
+</FrameLayout>

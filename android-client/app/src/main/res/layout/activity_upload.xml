@@ -30,7 +30,7 @@
                     android:textStyle="bold" android:gravity="center_horizontal"/>
 
             <ImageView
-                    android:id="@+id/action_image"
+                    android:id="@+id/action_image2"
                     android:layout_width="334dp"
                     android:layout_height="284dp"
                     android:layout_marginLeft="100dp"
@@ -42,7 +42,7 @@
                     android:layout_gravity="center_horizontal"/>
             <Button
                     android:fontFamily="@font/enanum"
-                    android:id="@+id/btnTambah"
+                    android:id="@+id/btnTambah2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_background"
@@ -50,7 +50,7 @@
                     android:textStyle="bold"/>
             <Button
                     android:fontFamily="@font/enanum"
-                    android:id="@+id/btnUpload"
+                    android:id="@+id/btnUpload2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button2_background"

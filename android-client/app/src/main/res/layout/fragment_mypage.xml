@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MypageFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+            android:textSize="34sp"
+            android:fontFamily="@font/enanum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/user_nickname"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="180dp" android:textColor="#5D3D37"/>
+    <Button
+            android:textSize="20sp"
+            android:fontFamily="@font/enanum"
+            android:background="@drawable/button_background"
+            android:layout_width="200dp"
+            android:layout_height="66dp" android:id="@+id/logout_btn"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="480dp" android:text="로그아웃" android:textColor="@color/white"/>
+<!--    <ImageView-->
+<!--            android:layout_gravity="center|top"-->
+<!--            android:layout_marginTop="280dp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            tools:src="@tools:sample/avatars"-->
+<!--            android:id="@+id/user_image"/>-->
+
+</FrameLayout>

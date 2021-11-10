@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".RegisterFragment">
+    <EditText
+            android:fontFamily="@font/enanum"
+            android:id="@+id/ftv_user_name"
+            android:layout_width="257dp"
+            android:layout_height="43dp"
+            android:ems="10"
+            android:hint="이름"
+            android:inputType="textPersonName"
+            android:background="@color/white" android:layout_gravity="center|top"
+            android:layout_marginTop="70dp"/>
+    <EditText
+            android:fontFamily="@font/enanum"
+            android:background="@color/white"
+            android:id="@+id/ftv_id"
+            android:layout_width="257dp"
+            android:layout_height="44dp"
+            android:ems="10"
+            android:hint="아이디"
+            android:inputType="textPersonName"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="140dp"
+    />
+    <EditText
+            android:fontFamily="@font/enanum"
+            android:id="@+id/ftv_email"
+            android:layout_width="257dp"
+            android:layout_height="44dp"
+            android:ems="10"
+            android:hint="이메일"
+            android:inputType="textPersonName"
+            android:background="@color/white"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="350dp"/>
+
+    <EditText
+            android:fontFamily="@font/enanum"
+            android:id="@+id/ftv_phone"
+            android:layout_width="257dp"
+            android:layout_height="44dp"
+            android:ems="10"
+            android:hint="휴대전화"
+            android:inputType="textPersonName"
+            android:background="@color/white"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="280dp"/>
+
+    <EditText
+            android:fontFamily="@font/enanum"
+            android:id="@+id/ftv_pass"
+            android:layout_width="257dp"
+            android:layout_height="44dp"
+            android:ems="10"
+            android:hint="비밀번호"
+            android:background="@color/white"
+            android:inputType="textPassword"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="210dp"/>
+    <Button
+            android:fontFamily="@font/enanum"
+            android:background="@drawable/button_brown"
+            android:id="@+id/fbtn_register"
+            android:layout_width="237dp"
+            android:layout_height="62dp"
+            android:text="회원가입"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="420dp" android:textSize="24sp" android:textColor="#5D3D37"/>
+
+</FrameLayout>

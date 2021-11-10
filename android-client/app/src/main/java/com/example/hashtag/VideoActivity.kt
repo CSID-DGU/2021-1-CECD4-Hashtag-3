@@ -25,7 +25,6 @@ import com.example.hashtag.upload.model.ResponseUpload
 import com.example.hashtag.upload.model.VideoResponse
 import kotlinx.android.synthetic.main.activity_video.*
 import okhttp3.internal.notifyAll
-import okhttp3.internal.wait
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
 import java.io.File
@@ -54,15 +53,15 @@ class VideoActivity : AppCompatActivity(),UploadView, Serializable, EasyPermissi
         presenter = UploadPresenter(this)
         val login_id = intent.getSerializableExtra("current_user_id") as? String
         val login_email = intent.getSerializableExtra("current_user_email") as? String
-        complete_btn.setOnClickListener {
+        complete_btn2.setOnClickListener {
             val lock = Any()
             synchronized(lock){
                 lock.notifyAll()
                 cameraExecutor.shutdown()
-                val intentss = Intent(this@VideoActivity, FeedActivity::class.java)
-                intentss.putExtra("current_user_id",login_id)
-                intentss.putExtra("current_user_email",login_email)
-                startActivity(intentss)
+//                val intentss = Intent(this@VideoActivity, FeedActivity::class.java)
+//                intentss.putExtra("current_user_id",login_id)
+//                intentss.putExtra("current_user_email",login_email)
+//                startActivity(intentss)
             }
 
         }
@@ -72,7 +71,7 @@ class VideoActivity : AppCompatActivity(),UploadView, Serializable, EasyPermissi
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         var second: Int = 0
-        kotlin.concurrent.timer(period = 1000,initialDelay = 1000){
+        kotlin.concurrent.timer(period = 100,initialDelay = 1000){
 
            takePhoto()
         }
@@ -132,7 +131,7 @@ class VideoActivity : AppCompatActivity(),UploadView, Serializable, EasyPermissi
             val preview = Preview.Builder()
                 .build()
                 .also {
-                    it.setSurfaceProvider(viewFinder.surfaceProvider)
+                    it.setSurfaceProvider(viewFinder2.surfaceProvider)
                 }
 
             imageCapture = ImageCapture.Builder()
@@ -255,7 +254,7 @@ class VideoActivity : AppCompatActivity(),UploadView, Serializable, EasyPermissi
             }).show()
     }
 
-    override fun onSuccessupload(List:ArrayList<ResponseUpload>) {
+    override fun onSuccessupload(List:ArrayList<ResponseUpload>,id:String, email:String) {
         Log.d("success",List.toString())
     }
     override fun onSuccessFeed(List:ArrayList<Cart>, List1:ArrayList<Feed>) {

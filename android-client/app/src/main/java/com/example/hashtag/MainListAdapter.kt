@@ -21,7 +21,7 @@ class MainListAdapter (val context: Context, val ItemList: ArrayList<ResponseUpl
         val price = view.findViewById<TextView>(R.id.tv_price)
         val plusBtn = view.findViewById<Button>(R.id.plusBtn)
         val minusBtn = view.findViewById<Button>(R.id.minusBtn)
-        val cart = CartActivity()
+//        val cart = CartActivity()
         val item = ItemList[position]
 
         name.text = item.name

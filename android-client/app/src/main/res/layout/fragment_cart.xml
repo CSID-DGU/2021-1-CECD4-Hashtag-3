@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".CartFragment">
+    <Button
+            android:layout_gravity="center|top"
+            android:fontFamily="@font/enanum"
+            android:text="상품 추가하기"
+            android:layout_width="267dp"
+            android:layout_height="50dp" android:id="@+id/addBtn5"
+            android:textColor="@color/white"
+            android:background="@drawable/button_background"
+            android:textSize="20sp" android:textStyle="bold"
+            android:layout_marginTop="480dp"
+
+            />
+    <ListView
+            android:layout_gravity="center|top"
+            android:layout_width="371dp"
+            android:layout_height="345dp"
+            android:id="@+id/mainListView"
+            android:layout_marginTop="60dp"/>
+    <TextView
+            android:layout_gravity="center|top|left"
+            android:text="총 합"
+
+            android:layout_width="78dp"
+            android:layout_height="29dp" android:id="@+id/tv_total"
+            android:gravity="center_horizontal" android:textStyle="bold"
+            android:textSize="16sp"
+
+            android:layout_marginTop="430dp"
+            android:layout_marginLeft="30dp"
+            android:textColor="#274046" android:textAlignment="center"/>
+    <TextView
+            android:layout_gravity="center|top|right"
+            android:text="0"
+            android:layout_width="160dp"
+            android:layout_height="31dp" android:id="@+id/tv_total_sum"
+            android:gravity="center_horizontal" android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="430dp"
+            android:layout_marginBottom="430dp"
+            android:textColor="#274046" android:textAlignment="center"/>
+    <Button
+            android:fontFamily="@font/enanum"
+            android:text="결제하기"
+            android:layout_width="267dp"
+            android:layout_height="50dp" android:id="@+id/payBtn5"
+            android:background="@drawable/button2_background"
+            android:textColor="#5D3D37"
+            android:textSize="20sp" android:textStyle="bold"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="540dp"
+
+    />
+    <TextView
+            android:fontFamily="@font/enanum"
+            android:text="장바구니"
+            android:layout_width="164dp"
+            android:layout_height="40dp" android:id="@+id/textView"
+            android:gravity="center" android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center|top"
+            android:textColor="#274046"/>
+
+</FrameLayout>

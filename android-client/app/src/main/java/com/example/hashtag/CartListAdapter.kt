@@ -9,18 +9,20 @@ import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.TextView
 import com.example.hashtag.upload.model.Cart
+import com.example.hashtag.upload.model.Feed
 
 
-class CartListAdapter (val context: Context, val ItemList: ArrayList<Cart>) : BaseAdapter() {
+class CartListAdapter (val context: Context, val ItemList: ArrayList<Cart>,val ItemList2: ArrayList<Feed>,val email:String) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-
+        var naviActivity : NaviActivity? = null
+        naviActivity = context as NaviActivity
         val view: View = LayoutInflater.from(context).inflate(R.layout.cart_lv_item, null)
         val name = view.findViewById<TextView>(R.id.tv_name)
         val count = view.findViewById<TextView>(R.id.tv_count)
         val price = view.findViewById<TextView>(R.id.tv_price)
         val plusBtn = view.findViewById<Button>(R.id.plusBtn)
         val minusBtn = view.findViewById<Button>(R.id.minusBtn)
-        val feed = FeedActivity()
+//        val feed = FeedActivity()
         val item = ItemList[position]
 
         name.text = item.name
@@ -31,7 +33,7 @@ class CartListAdapter (val context: Context, val ItemList: ArrayList<Cart>) : Ba
         minusBtn.setOnClickListener {
             var num = Integer.parseInt(item.count.toString())
             if(num==0){
-                (context as FeedActivity).toastError()
+                FeedFragment().toastError()
             }
             else {
                 num -= 1
@@ -39,7 +41,8 @@ class CartListAdapter (val context: Context, val ItemList: ArrayList<Cart>) : Ba
                 Log.d("clicked minus count", count.toString())
                 count.text = item.count.toString().plus("개")
 
-                (context as FeedActivity).ReviseTotal(getTotalPrice().toString().plus("원"))
+               // FeedFragment().ReviseTotal(getTotalPrice().toString().plus("원"))
+                naviActivity?.callFeed2(email,ItemList2, ItemList)
             }
 
         }
@@ -48,8 +51,8 @@ class CartListAdapter (val context: Context, val ItemList: ArrayList<Cart>) : Ba
             item.count = num
             Log.d("clicked minus count", count.toString())
             count.text = item.count.toString().plus("개")
-            (context as FeedActivity).ReviseTotal(getTotalPrice().toString().plus("원"))
-
+//            FeedFragment().ReviseTotal(getTotalPrice().toString().plus("원"))
+            naviActivity?.callFeed2(email, ItemList2, ItemList)
         }
         return view
     }

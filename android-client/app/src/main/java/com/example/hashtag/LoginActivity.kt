@@ -16,6 +16,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
         btn_go_login.setOnClickListener{
             val intentss = Intent(this@LoginActivity, Login2Activity::class.java)
             startActivity(intentss)

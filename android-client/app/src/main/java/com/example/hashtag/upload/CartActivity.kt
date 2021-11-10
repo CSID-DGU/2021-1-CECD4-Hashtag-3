@@ -17,7 +17,7 @@ class CartActivity : AppCompatActivity() {
 
 
     fun ReviseTotal(setString: String) {
-        tv_total_sum.setText(setString)
+        tv_total_sum_f.setText(setString)
         total = setString
     }
     fun toastError() {
@@ -34,10 +34,10 @@ class CartActivity : AppCompatActivity() {
         if(pathData!=null) {
             val itemAdapter = MainListAdapter(this, pathData)
             mainListView.adapter = itemAdapter
-            tv_total_sum.setText(itemAdapter.getTotalPrice().toString().plus("원"))
+            tv_total_sum_f.setText(itemAdapter.getTotalPrice().toString().plus("원"))
             total = itemAdapter.getTotalPrice().toString().plus("원")
 
-            payyBtn.setOnClickListener {
+            payBtnc.setOnClickListener {
                 val intentss = Intent(this@CartActivity, Pay2Activity::class.java)
                 intentss.putExtra("list",pathData)
                 intentss.putExtra("total", total)
@@ -47,7 +47,7 @@ class CartActivity : AppCompatActivity() {
         }
 
 
-        addBtn.setOnClickListener {
+        addBtnc.setOnClickListener {
             val intents = Intent(this@CartActivity, MenuActivity::class.java)
             intents.putExtra("current_user_id",login_id)
             intents.putExtra("current_user_email",login_email)

@@ -45,7 +45,7 @@ class Pay2Activity : AppCompatActivity() {
             result_string += total
         }
         tv_pay.setText(result_string)
-        edit_email.setText(login_email)
+        edit_email.setText("kwon990928@naver.com")
 
         emailBtn.setOnClickListener {
             if(edit_email.getText().toString().contains("@"))

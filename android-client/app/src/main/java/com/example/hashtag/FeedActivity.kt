@@ -9,10 +9,7 @@ import com.example.hashtag.upload.model.Cart
 import com.example.hashtag.upload.model.CartFeedResponse
 import com.example.hashtag.upload.model.Feed
 import com.example.hashtag.upload.model.NetworkClient
-import kotlinx.android.synthetic.main.activity_cart.*
-import kotlinx.android.synthetic.main.activity_cart.addBtn
-import kotlinx.android.synthetic.main.activity_cart.payyBtn
-import kotlinx.android.synthetic.main.activity_cart.tv_total_sum
+import kotlinx.android.synthetic.main.activity_cart.tv_total_sum_f
 import kotlinx.android.synthetic.main.activity_feed.*
 import retrofit2.Call
 import retrofit2.Response
@@ -25,7 +22,7 @@ class FeedActivity : AppCompatActivity() {
     var total:String? = null
 
     fun ReviseTotal(setString: String) {
-        tv_total_sum.setText(setString)
+        tv_total_sum_f.setText(setString)
         total = setString
     }
     fun Refresh(revise_feed: ArrayList<Feed>, revise_cart: ArrayList<Cart>) {
@@ -52,12 +49,17 @@ class FeedActivity : AppCompatActivity() {
 //            tv_1.setText(List.toString())
                     Toast.makeText(baseContext, "피드 들어옴", Toast.LENGTH_SHORT).show()
                     if(pathData!=null&&pathData2!=null) {
-                        val feedAdapter = FeedListAdapter(this@FeedActivity, pathData2,pathData)
+                        val feedAdapter =
+                            login_email?.let { it1 -> FeedListAdapter(this@FeedActivity, pathData2,pathData, it1) }
                         FeedListView.adapter = feedAdapter
-                        val cartAdapter = pathData?.let { CartListAdapter(this@FeedActivity, pathData) }
-                        CartListView.adapter = cartAdapter
-                        tv_total_sum.setText(cartAdapter.getTotalPrice().toString().plus("원"))
-                        total = cartAdapter.getTotalPrice().toString().plus("원")
+                        val cartAdapter = pathData?.let {
+                            if (login_email != null) {
+                                CartListAdapter(this@FeedActivity, pathData, pathData2,login_email)
+                            }
+                        }
+//                        CartListView.adapter = cartAdapter
+//                        tv_total_sum_f.setText(cartAdapter.getTotalPrice().toString().plus("원"))
+//                        total = cartAdapter.getTotalPrice().toString().plus("원")
 
 
                     }
@@ -67,7 +69,7 @@ class FeedActivity : AppCompatActivity() {
 
             }
         })
-        payyBtn.setOnClickListener {
+        payBtnf.setOnClickListener {
             val intentss = Intent(this@FeedActivity, Pay2Activity::class.java)
             intentss.putExtra("list",pathData)
             intentss.putExtra("total", total)
@@ -75,9 +77,9 @@ class FeedActivity : AppCompatActivity() {
             intentss.putExtra("current_user_email",login_email)
             Log.d("pass this", pathData.toString())
             startActivity(intentss)
-            Toast.makeText(baseContext, "서버에러", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(baseContext, "서버에러", Toast.LENGTH_SHORT).show()
         }
-        addBtn.setOnClickListener {
+        addBtnf.setOnClickListener {
             val intents = Intent(this@FeedActivity, MenuActivity::class.java)
             startActivity(intents)
         }

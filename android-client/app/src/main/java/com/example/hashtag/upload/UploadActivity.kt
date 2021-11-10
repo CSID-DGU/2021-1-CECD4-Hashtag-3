@@ -6,6 +6,8 @@ import android.content.Intent
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
+import android.media.ExifInterface
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +16,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.example.hashtag.FeedActivity
+//import com.example.hashtag.FeedActivity
 import com.example.hashtag.R
 import com.example.hashtag.upload.model.*
 import com.example.hashtag.upload.utils.FilePath
@@ -28,26 +30,35 @@ import java.util.*
 import kotlin.random.Random
 
 class UploadActivity : AppCompatActivity(), UploadView, Serializable{
-    val login_id = intent.getSerializableExtra("current_user_id") as? String
-    val login_email = intent.getSerializableExtra("current_user_email") as? String
+
     private var REQUEST_IMAGE_GALLERY = 0
     private var REQUEST_IMAGE_CAMERA = 1
     private var REQUEST_PERMISSION = 2
     private var image_path : String? = null
     private var presenter: UploadPresenter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload)
-
+        val login_id = intent.getSerializableExtra("current_user_id") as? String
+        val login_email = intent.getSerializableExtra("current_user_email") as? String
 
         presenter = UploadPresenter(this)
+
         permissionLocation()
 
-        btnUpload.setOnClickListener {
-            actionPhoto()
+        btnUpload2.setOnClickListener {
+                    Toast.makeText(this, login_id.toString(), Toast.LENGTH_SHORT).show()
+
+            if (login_id != null) {
+                if (login_email != null) {
+                    actionPhoto(login_id,login_email)
+                }
+            }
+
         }
 
-        btnTambah.setOnClickListener {
+        btnTambah2.setOnClickListener {
             actionUpload()
         }
     }
@@ -61,8 +72,9 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
         }
     }
 
-    private fun actionPhoto() {
-        image_path?.let { presenter?.upload(it) }
+    private fun actionPhoto(id:String, email:String) {
+
+        image_path?.let { presenter?.upload(it,id, email) }
     }
 
     private fun actionUpload() {
@@ -102,14 +114,14 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
         image_path = persistImage(image as Bitmap, camera)
 //        Toast.makeText(this, image_path.toString(), Toast.LENGTH_SHORT).show()
 
-        action_image.setImageBitmap(BitmapFactory.decodeFile(image_path))
+        action_image2.setImageBitmap(BitmapFactory.decodeFile(image_path))
 
 
     }
 
     private fun resultGallery(data: Intent?) {
         val image_bitmap = onSelectFromGalleryResult(data)
-        action_image.setImageBitmap(image_bitmap)
+        action_image2.setImageBitmap(image_bitmap)
     }
     private   fun createCopyAndReturnRealPath(path: Uri) :String? {
 
@@ -122,16 +134,55 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
 
         return result
     }
+    fun exifOrientationToDegrees(exifOrientation: Int): Int {
+        if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_90) {
+            return 90
+        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_180) {
+            return 180
+        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_270) {
+            return 270
+        }
+        return 0
+    }
+    fun rotate(bitmap: Bitmap?, degrees: Int): Bitmap? { // 이미지 회전 및 이미지 사이즈 압축
+        var bitmap = bitmap
+        if (degrees != 0 && bitmap != null) {
+            val m = Matrix()
+            m.setRotate(degrees.toFloat(), bitmap.width.toFloat() / 2,
+                bitmap.height.toFloat() / 2)
+            try {
+                val converted = Bitmap.createBitmap(bitmap, 0, 0,
+                    bitmap.width, bitmap.height, m, true)
+                if (bitmap != converted) {
+                    bitmap.recycle()
+                    bitmap = converted
+                    val options = BitmapFactory.Options()
+                    options.inSampleSize = 4
+                    bitmap = Bitmap.createScaledBitmap(bitmap, 1280, 1280, true) // 이미지 사이즈 줄이기
+                }
+            } catch (ex: OutOfMemoryError) {
+                // 메모리가 부족하여 회전을 시키지 못할 경우 그냥 원본을 반환합니다.
+            }
+        }
+        return bitmap
+    }
+
     private fun onSelectFromGalleryResult(data: Intent?): Bitmap {
         var bm: Bitmap? = null
         if (data !=null) {
             try {
+
                // changeProfilePath = absolutelyPath(data!!.data)
                 image_path = data.data?.let { FilePath.getPath(this, it) }.toString()
-//                Toast.makeText(this, image_path.toString(), Toast.LENGTH_SHORT).show()
-                Log.d("Gallery",  image_path.toString())
-                Log.d("Before Gallery", image_path ?: data.data?.let { FilePath.getPath(this, it) }.toString())
+
                 bm = MediaStore.Images.Media.getBitmap(contentResolver, data.data)
+                val exif = image_path?.let { ExifInterface(it) }
+                val exifOrientation: Int = exif!!.getAttributeInt(
+                    ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+                val exifDegree = exifOrientationToDegrees(exifOrientation)
+                bm = rotate(bm, exifDegree)
+//                Toast.makeText(this, image_path.toString(), Toast.LENGTH_SHORT).show()
+//               bm = MediaStore.Images.Media.getBitmap(contentResolver, data.data)
             } catch (e : IOException) {
                 e.printStackTrace()
             }
@@ -140,13 +191,13 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
     }
     private fun persistImage(bitmap: Bitmap, date: String): String {
         val dirFile = filesDir
-        val imageFile = File(dirFile, date+ ".png")
+        val imageFile = File(dirFile, date+ ".jpeg")
         val image_path = imageFile.path
 
         val os: OutputStream?
         try {
             os = FileOutputStream(imageFile)
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, os)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os)
             os.flush()
             os.close()
         }catch (e: Exception) {
@@ -173,21 +224,21 @@ class UploadActivity : AppCompatActivity(), UploadView, Serializable{
             }).show()
     }
 
-    override fun onSuccessupload(List:ArrayList<ResponseUpload>) {
+    override fun onSuccessupload(List:ArrayList<ResponseUpload>, id: String, email: String) {
         Log.d("success",List.toString())
 //            tv_1.setText(List.toString())
         var intent = Intent(this@UploadActivity, CartActivity::class.java)
         intent.putExtra("key",List)
-        intent.putExtra("current_user_id",login_id)
-        intent.putExtra("current_user_email",login_email)
+        intent.putExtra("current_user_id",id)
+        intent.putExtra("current_user_email",email)
         startActivity(intent)
     }
     override fun onSuccessFeed(List:ArrayList<Cart>, List1:ArrayList<Feed>) {
         Log.d("success",List.toString())
 //            tv_1.setText(List.toString())
-        var intent = Intent(this@UploadActivity, FeedActivity::class.java)
-        intent.putExtra("key",List)
-        startActivity(intent)
+//        var intent = Intent(this@UploadActivity, FeedActivity::class.java)
+//        intent.putExtra("key",List)
+//        startActivity(intent)
     }
     override fun onSuccess(List:ArrayList<VideoResponse>) {
         AlertDialog.Builder(this)
