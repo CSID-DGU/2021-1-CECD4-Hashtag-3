@@ -43,10 +43,13 @@ https://github.com/AlexeyAB/darknet 을 이용해 이미지를 학습하였으�
  
 <img width="20%" src="https://user-images.githubusercontent.com/62542277/141079224-5f6d4d97-6988-4db4-a671-b861d73de65b.gif"/>
 <img width="20%" src="https://user-images.githubusercontent.com/62542277/141080502-e15ecf4a-0a78-4479-868d-c7e1acd5ff21.gif"/>
-  </p><br/>
+<img width="20%" src="https://user-images.githubusercontent.com/62542277/141080833-8834c33d-6c61-4850-8cf0-621c1753c268.gif"/> 
+</p><br/>
   <p align="center">
-<img width="20%" src="https://user-images.githubusercontent.com/62542277/141080833-8834c33d-6c61-4850-8cf0-621c1753c268.gif"/>
 <img width="20%" src="https://user-images.githubusercontent.com/62542277/141080930-7ae3a11c-3076-4e16-9204-4f35b5416380.gif"/>
+ <img width="20%" src="https://user-images.githubusercontent.com/62542277/141082548-f588613f-df4d-41b4-871a-fa340e652fc9.gif"/>
+<img width="20%" src="https://user-images.githubusercontent.com/62542277/141082563-0765da26-c3f6-4481-9299-6eef374d8c94.gif"/>
+
 <img width="20%" src="https://user-images.githubusercontent.com/62542277/141079612-a8b4e9a6-6d9d-46ec-a373-c5bb85c84b86.gif"/>
  </p><br/>
  
