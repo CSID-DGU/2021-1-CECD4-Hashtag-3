@@ -32,7 +32,11 @@ https://github.com/AlexeyAB/darknet 을 이용해 이미지를 학습하였으�
 </p><br/>
 
 ### 클라이언트<br/>
-* https://github.com/JetBrains/kotlin
+* Android Studio에서 Kotlin을 사용하였습니다.   
+* 서버 통신을 위해 retrofit과 okhttp를 사용하였습니다.
+* 앱 하단에 BottomNavigationView를 적용하였고, 전반적으로 fragment화면을 사용하였습니다.
+* 장바구니 화면에서 Listview를 사용하였고, 실시간 영상 촬영 화면에서 camera preview를 사용하였습니다. 
+
 
 #### 스크린샷
 <p align="center">
