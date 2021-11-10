@@ -36,16 +36,18 @@ https://github.com/AlexeyAB/darknet 을 이용해 이미지를 학습하였으�
 
 #### 스크린샷
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/62542277/140029065-3a99217e-6250-4cb8-aea3-5af29fa6886d.png" width="150" height="300" >
-    <img src="https://user-images.githubusercontent.com/62542277/140029084-724cb8d0-8a36-4887-bd1a-3e7bcbe12533.png" width="150" height="300" >
-    <img src="https://user-images.githubusercontent.com/62542277/140029250-9511fadc-da48-4b1f-918b-3adddc4b102f.png" width="150" height="300" >
-    <img src="https://user-images.githubusercontent.com/62542277/140029107-6b1a7d52-55bc-4595-bdaa-166c6ca1c495.png" width="150" height="300" >
-   <img src="https://user-images.githubusercontent.com/62542277/140029161-9e918d30-2f3e-4b4c-a703-41008176f8d7.png" width="150" height="300" >
-   <img src="https://user-images.githubusercontent.com/62542277/140029337-b3915b91-1d28-4ed0-a382-e6db939d8aa6.png" width="150" height="300" >
-   <img src="https://user-images.githubusercontent.com/62542277/140029183-27a5977a-b6ce-4095-aa0c-4a81f6c897cc.png" width="150" height="300" >
-   <img src="https://user-images.githubusercontent.com/62542277/140029203-9ab898d8-e013-4c5a-92af-b5587f0a3e29.png" width="150" height="300" >
-   <img src="https://user-images.githubusercontent.com/62542277/140029209-79052297-e4fe-4c60-84cc-515a679c9e7c.png" width="150" height="300" >
-   <img src="https://user-images.githubusercontent.com/62542277/140029218-00404560-1566-41e2-9c14-81db039dba33.png" width="150" height="300" >
+    <img src="https://user-images.githubusercontent.com/62542277/141062219-97e92b17-9a41-47d3-949b-46ab685557ee.jpg" width="150" height="300" >
+    <img src="https://user-images.githubusercontent.com/62542277/141062258-672cb949-8be6-4718-ad1f-0a859940384d.jpg" width="150" height="300" >
+    <img src="https://user-images.githubusercontent.com/62542277/141062247-8257fb52-add5-41a1-a9d2-f096b520dbaa.jpeg" width="150" height="300" >
+    <img src="https://user-images.githubusercontent.com/62542277/141062253-4ece6a9b-529b-4cdc-98f9-c9eefb963341.jpg" width="150" height="300" >
+   <img src="https://user-images.githubusercontent.com/62542277/141062266-d6416f25-3fb5-4598-9c91-a8f21f7080b8.jpg" width="150" height="300" >
+   <img src="https://user-images.githubusercontent.com/62542277/141062241-b7976e69-9d7a-4192-a1c9-00b44046afa9.jpg" width="150" height="300" >
+   <img src="https://user-images.githubusercontent.com/62542277/141062292-1670cb91-9bdb-4c3c-8282-4b6bf39e43f7.jpg" width="150" height="300" >
+   <img src="https://user-images.githubusercontent.com/62542277/141062299-6228439a-46c9-41ec-a604-00c948b9d74a.jpg" width="150" height="300" >
+   <img src="https://user-images.githubusercontent.com/62542277/141062273-977e2122-9175-41b1-bc74-21398a049826.jpg" width="150" height="300" >
+   <img src="https://user-images.githubusercontent.com/62542277/141062279-6ae37bd5-9a25-4e5e-afb9-fbe40a46c26e.jpg" width="150" height="300" >
+    <img src="https://user-images.githubusercontent.com/62542277/141062284-1d0ed93f-5a69-4e16-84d9-208b0e9f7204.jpg" width="150" height="300" >
+    <img src="https://user-images.githubusercontent.com/62542277/141062287-c4e78760-eeee-479f-a560-7adff7740d8c.jpg" width="150" height="300" >
  
 </p><br/>
 
