@@ -81,7 +81,7 @@ Ubuntu에서 실행 시
 3. flask run
 ```
 
-## 결과
+## 트래킹 화면
 <p align="center">
     <img src="https://user-images.githubusercontent.com/62283017/137354306-d42014db-5ab3-4013-97fe-03e67428ebb3.gif" width="400" height="400" >
     <img src="https://user-images.githubusercontent.com/62283017/137355024-64e4fcf2-bd88-4b59-a81d-1f82cd491bc7.gif" width="400" height="400" >
