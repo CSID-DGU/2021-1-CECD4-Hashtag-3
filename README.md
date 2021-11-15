@@ -43,6 +43,7 @@ https://github.com/AlexeyAB/darknet 을 이용해 이미지를 학습하였으�
  
 <img width="20%" src="https://user-images.githubusercontent.com/62542277/141079224-5f6d4d97-6988-4db4-a671-b861d73de65b.gif"/>
 <img width="20%" src="https://user-images.githubusercontent.com/62542277/141080502-e15ecf4a-0a78-4479-868d-c7e1acd5ff21.gif"/>
+ <img width="20%" src="https://user-images.githubusercontent.com/62542277/141798662-eb7eab7b-c45d-4315-9d95-e1bf82341fbf.gif"/>
 <img width="20%" src="https://user-images.githubusercontent.com/62542277/141080833-8834c33d-6c61-4850-8cf0-621c1753c268.gif"/> 
 </p><br/>
   <p align="center">
