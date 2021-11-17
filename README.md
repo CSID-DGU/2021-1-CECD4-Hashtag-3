@@ -32,20 +32,42 @@ https://github.com/AlexeyAB/darknet 을 이용해 이미지를 학습하였으�
 </p><br/>
 
 ### 클라이언트<br/>
-* https://github.com/JetBrains/kotlin
+* Android Studio에서 Kotlin을 사용하였습니다.   
+* 서버 통신을 위해 retrofit과 okhttp를 사용하였습니다.
+* 앱 하단에 BottomNavigationView를 적용하였고, 전반적으로 fragment화면을 사용하였습니다.
+* 장바구니 화면에서 Listview를 사용하였고, 실시간 영상 촬영 화면에서 camera preview를 사용하였습니다. 
 
-#### 스크린샷
+
+### 실행 영상<br/>
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/62542277/140029065-3a99217e-6250-4cb8-aea3-5af29fa6886d.png" width="150" height="300" >
-    <img src="https://user-images.githubusercontent.com/62542277/140029084-724cb8d0-8a36-4887-bd1a-3e7bcbe12533.png" width="150" height="300" >
-    <img src="https://user-images.githubusercontent.com/62542277/140029250-9511fadc-da48-4b1f-918b-3adddc4b102f.png" width="150" height="300" >
-    <img src="https://user-images.githubusercontent.com/62542277/140029107-6b1a7d52-55bc-4595-bdaa-166c6ca1c495.png" width="150" height="300" >
-   <img src="https://user-images.githubusercontent.com/62542277/140029161-9e918d30-2f3e-4b4c-a703-41008176f8d7.png" width="150" height="300" >
-   <img src="https://user-images.githubusercontent.com/62542277/140029337-b3915b91-1d28-4ed0-a382-e6db939d8aa6.png" width="150" height="300" >
-   <img src="https://user-images.githubusercontent.com/62542277/140029183-27a5977a-b6ce-4095-aa0c-4a81f6c897cc.png" width="150" height="300" >
-   <img src="https://user-images.githubusercontent.com/62542277/140029203-9ab898d8-e013-4c5a-92af-b5587f0a3e29.png" width="150" height="300" >
-   <img src="https://user-images.githubusercontent.com/62542277/140029209-79052297-e4fe-4c60-84cc-515a679c9e7c.png" width="150" height="300" >
-   <img src="https://user-images.githubusercontent.com/62542277/140029218-00404560-1566-41e2-9c14-81db039dba33.png" width="150" height="300" >
+ 
+<img width="20%" src="https://user-images.githubusercontent.com/62542277/141079224-5f6d4d97-6988-4db4-a671-b861d73de65b.gif"/>
+<img width="20%" src="https://user-images.githubusercontent.com/62542277/141080502-e15ecf4a-0a78-4479-868d-c7e1acd5ff21.gif"/>
+ <img width="20%" src="https://user-images.githubusercontent.com/62542277/141798662-eb7eab7b-c45d-4315-9d95-e1bf82341fbf.gif"/>
+<img width="20%" src="https://user-images.githubusercontent.com/62542277/141080833-8834c33d-6c61-4850-8cf0-621c1753c268.gif"/> 
+</p><br/>
+  <p align="center">
+<img width="20%" src="https://user-images.githubusercontent.com/62542277/141080930-7ae3a11c-3076-4e16-9204-4f35b5416380.gif"/>
+ <img width="20%" src="https://user-images.githubusercontent.com/62542277/141082548-f588613f-df4d-41b4-871a-fa340e652fc9.gif"/>
+<img width="20%" src="https://user-images.githubusercontent.com/62542277/141082563-0765da26-c3f6-4481-9299-6eef374d8c94.gif"/>
+
+<img width="20%" src="https://user-images.githubusercontent.com/62542277/141079612-a8b4e9a6-6d9d-46ec-a373-c5bb85c84b86.gif"/>
+ </p><br/>
+ 
+ ### 스크린샷
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/62542277/141062219-97e92b17-9a41-47d3-949b-46ab685557ee.jpg" width="150" height="300" >
+    <img src="https://user-images.githubusercontent.com/62542277/141062258-672cb949-8be6-4718-ad1f-0a859940384d.jpg" width="150" height="300" >
+    <img src="https://user-images.githubusercontent.com/62542277/141062247-8257fb52-add5-41a1-a9d2-f096b520dbaa.jpeg" width="150" height="300" >
+   <img src="https://user-images.githubusercontent.com/62542277/141062266-d6416f25-3fb5-4598-9c91-a8f21f7080b8.jpg" width="150" height="300" >
+ <img src="https://user-images.githubusercontent.com/62542277/141062253-4ece6a9b-529b-4cdc-98f9-c9eefb963341.jpg" width="150" height="300" >
+   <img src="https://user-images.githubusercontent.com/62542277/141062241-b7976e69-9d7a-4192-a1c9-00b44046afa9.jpg" width="150" height="300" >
+   <img src="https://user-images.githubusercontent.com/62542277/141062292-1670cb91-9bdb-4c3c-8282-4b6bf39e43f7.jpg" width="150" height="300" >
+   <img src="https://user-images.githubusercontent.com/62542277/141062299-6228439a-46c9-41ec-a604-00c948b9d74a.jpg" width="150" height="300" >
+   <img src="https://user-images.githubusercontent.com/62542277/141062273-977e2122-9175-41b1-bc74-21398a049826.jpg" width="150" height="300" >
+   <img src="https://user-images.githubusercontent.com/62542277/141062279-6ae37bd5-9a25-4e5e-afb9-fbe40a46c26e.jpg" width="150" height="300" >
+    <img src="https://user-images.githubusercontent.com/62542277/141062284-1d0ed93f-5a69-4e16-84d9-208b0e9f7204.jpg" width="150" height="300" >
+    <img src="https://user-images.githubusercontent.com/62542277/141062287-c4e78760-eeee-479f-a560-7adff7740d8c.jpg" width="150" height="300" >
  
 </p><br/>
 
@@ -75,7 +97,7 @@ Ubuntu에서 실행 시
 3. flask run
 ```
 
-## 결과
+## 트래킹 화면
 <p align="center">
     <img src="https://user-images.githubusercontent.com/62283017/137354306-d42014db-5ab3-4013-97fe-03e67428ebb3.gif" width="400" height="400" >
     <img src="https://user-images.githubusercontent.com/62283017/137355024-64e4fcf2-bd88-4b59-a81d-1f82cd491bc7.gif" width="400" height="400" >
