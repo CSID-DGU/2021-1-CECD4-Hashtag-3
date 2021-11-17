@@ -99,16 +99,16 @@ class Login2Fragment : Fragment() {
 //        val toast = Toast.makeText(getActivity(),  result_string, Toast.LENGTH_SHORT)
 //        toast.setGravity(Gravity.CENTER, Gravity.CENTER_HORIZONTAL, Gravity.CENTER_VERTICAL)
 //        toast.show()
-                val toast_s=Toast.makeText(
-                    getActivity(),
-                    "자동 로그인되었습니다.",
-                    Toast.LENGTH_SHORT
-                )
-                toast_s.setGravity(Gravity.CENTER, Gravity.CENTER_HORIZONTAL, Gravity.CENTER_VERTICAL)
-                toast_s.show()
-
-                val handler = Handler()
-                handler.postDelayed(Runnable { toast_s.cancel() }, 500)
+//                val toast_s=Toast.makeText(
+//                    getActivity(),
+//                    "자동 로그인되었습니다.",
+//                    Toast.LENGTH_SHORT
+//                )
+//                toast_s.setGravity(Gravity.CENTER, Gravity.CENTER_HORIZONTAL, Gravity.CENTER_VERTICAL)
+//                toast_s.show()
+//
+//                val handler = Handler()
+//                handler.postDelayed(Runnable { toast_s.cancel() }, 500)
                // Toast.makeText(getActivity(), "자동 로그인되었습니다.", Toast.LENGTH_SHORT).show()
 //                val intent = Intent(getActivity(), CartActivity::class.java)
 //                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))

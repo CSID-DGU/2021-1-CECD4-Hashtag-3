@@ -88,11 +88,12 @@ class Pay2Fragment : Fragment() {
             result_string += total
         }
         view.tv_pay.setText(result_string)
-        view.edit_email.setText(login_email)
+        view.edit_email.setText("yejinkwon0928@gmail.com")
+
         view.emailBtn.setOnClickListener {
             if(edit_email.getText().toString().contains("@"))
             {
-                val email: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), edit_email.getText().toString())
+                val email: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "yejinkwon0928@gmail.com")
                 val item: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), result_string)
                 val asyncDialog : ProgressDialog = ProgressDialog(getActivity())
                 asyncDialog.setProgressStyle(ProgressDialog.BUTTON_POSITIVE)

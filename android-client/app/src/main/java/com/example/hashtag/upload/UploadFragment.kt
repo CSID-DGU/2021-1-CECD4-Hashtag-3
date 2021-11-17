@@ -275,6 +275,7 @@ class UploadFragment : Fragment(), UploadView, Serializable {
                 .setNegativeButton("OK", DialogInterface.OnClickListener{ dialogINterface, i ->
 
                 }).show()
+
         }
     }
     override fun onErrorServer(message: String) {
@@ -292,7 +293,7 @@ class UploadFragment : Fragment(), UploadView, Serializable {
         asyncDialog.setProgressStyle(ProgressDialog.BUTTON_POSITIVE)
         asyncDialog.setMessage("이미지를 분석중..!")
         asyncDialog.show()
-
+        asyncDialog.dismiss()
     }
     override fun onQuit(message: String) {
         val asyncDialog : ProgressDialog = ProgressDialog(getActivity())

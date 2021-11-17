@@ -126,7 +126,8 @@ class CartFragment : Fragment() {
 //                intentss.putExtra("total", total)
 //                Log.d("pass this", pathData.toString())
 //                startActivity(intentss)
-
+                user_name="예진"
+                user_email="yejinkwon0928@gmail.com"
                 if (user_name != null) {
                     if (user_email != null) {
                         total?.let { it1 -> naviActivity?.callPay(pathData, it1, user_name!!, user_email!!) }
