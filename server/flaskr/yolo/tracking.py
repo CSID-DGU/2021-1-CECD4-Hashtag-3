@@ -16,7 +16,6 @@ images = []
 def main(img):
     #images = []
     count = 0
-    
 
     net = cv2.dnn.readNet("yolov4-obj_last.weights", "yolov4-obj.cfg")
     net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
@@ -37,19 +36,14 @@ def main(img):
     x2 = width1-x1
     x3 = width1
     y1 = height1
-    y2 = int(height1 * 0.55)
+    y2 = int(height1 * 0.5)
     y3 = height1
-    
     line = [x1, x2, x3, y1, y2, y3]
     first = False
 
     origin = frame
     frame = cv2.resize(frame, (816, 816), fx=0, fy=0,
                        interpolation=cv2.INTER_CUBIC)
-    # height,width,_ = frame.shape
-    # matrix = cv2.getRotationMatrix2D((width/2, height/2), 270, 1)
-    # frame = cv2.warpAffine(frame, matrix, (width, height))
-
     # 1. detect object and return output
     classes, scores, boxes = model.detect(
         frame, CONFIDENCE_THRESHOLD, NMS_THRESHOLD)
@@ -122,10 +116,7 @@ def get_product_info():
 def change_to_avi():
     print("비디오 생성 시작")
     print(f"len(images) = {len(images)}")
-    # 리눅스
-    fourcc = cv2.VideoWriter_fourcc('M','J','P','G') 
-    # 윈도우
-    #fourcc = cv2.VideoWriter_fourcc(*'DIVX')
+    fourcc = cv2.VideoWriter_fourcc(*'DIVX')
     output_filename = f"./data/out_test(2).avi"
     out = cv2.VideoWriter(output_filename, fourcc, 30.0, (816, 816))
     for i in range(len(images)):

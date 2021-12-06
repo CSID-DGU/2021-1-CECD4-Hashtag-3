@@ -32,3 +32,14 @@ class CartList(db.Model):
 
     def toDict(self):
         return {c.key: getattr(self, c.key) for c in inspect(self).mapper.column_attrs}
+
+
+class User(db.Model):
+    id = db.Column(db.String(128), primary_key=True)
+    password = db.Column(db.String(128))
+    name = db.Column(db.String(128))
+    email = db.Column(db.String(128))
+    phone = db.Column(db.String(128))
+
+    def toDict(self):
+        return {c.key: getattr(self, c.key) for c in inspect(self).mapper.column_attrs}

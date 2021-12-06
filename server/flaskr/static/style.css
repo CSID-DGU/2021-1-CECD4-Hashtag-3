@@ -1,0 +1,90 @@
+  body {
+    text-align: center;
+    margin: 20px auto;
+  }
+  #Layout {
+    width: 300px;
+    border: 1px solid black;
+  }
+  #Print {
+    width: 500px;
+    text-align: right;
+    padding: 3px 5px;
+  }
+  .basicDiv {
+    border: 1px solid black;
+    padding: 7px 0;
+    color: black;
+    height: 60px;
+    line-height: 60px;
+  }
+
+  .tblTop {
+    border-collapse: collapse;
+    border: 1px solid black;
+    border-bottom: 0px;
+  }
+  .tblTop td {
+    padding: 5px 0 10px 30px;
+    font: bold 24px gulim;
+    color: black;
+    text-align: center;
+  }
+  .tblTop2 {
+    border-collapse: collapse;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+  }
+  .tblTop2 .noTd {
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    padding: 4px;
+  }
+  .tblTop2 .noTd .noStxt {
+    font: bold 13px gulim;
+    color: #666666;
+  }
+  .tblTop2 td {
+    font: bold 14px gulim;
+    color: black;
+    padding: 4px;
+  }
+
+  .tbl {
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+  .tbl td {
+    border: 1px solid black;
+    padding: 4px;
+  }
+  .tbl td.titTd {
+    font: bold 14px gulim;
+    color: black;
+  }
+  .tbl th {
+    font: bold 13px gulim;
+    color: black;
+    border: 1px solid black;
+    background: #f0f1f9;
+    padding: 4px;
+  }
+
+  .tbl .item {
+    font: 13px gulim;
+    padding-left: 15px;
+  }
+  .tbl .article {
+    font: 13px gulim;
+    text-align: center;
+  }
+  .tbl .sum {
+    font: bold 13px gulim;
+    color: #4b4b4b;
+    text-align: right;
+    padding-right: 7px;
+  }
+
+  .cimg {
+    vertical-align: middle;
+  }

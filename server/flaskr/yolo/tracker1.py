@@ -1,4 +1,3 @@
-
 import math
 from dbr import *
 import time
@@ -11,14 +10,13 @@ class EuclideanDistTracker:
         # cart = { barcode info : count }
         self.cart = {}
         # 객체의 중심 위치 저장 given true/false
-        # {(class,id):(x,y,w,h,in_out,barcode,given,same_count,start_in_out,max_area)}
+        # {(class,id):(x,y,w,h,in_out,barcode,given,start_time,start_in_out,max_area)}
         self.all_product_info = {}
-        # {(class,id):(x,y,w,h,in_out,barcode,given,same_count,start_in_out,max_area)}
+        # {(class,id):(x,y,w,h,in_out,barcode,given,start_time,start_in_out,max_area)}
         self.all_barcode_info = {}
         # all_matchings = product class_id와 barcode class_id 쌍
         self.all_matchings = {}
 
-        # ??
         self.now_barcode_info = []
         # 아이디의 개수 카운팅
         # self.id_count = 0
@@ -28,10 +26,9 @@ class EuclideanDistTracker:
         self.reader.init_license(license_key)
         self.decode_data = []
         self.class_ids = {0: 0, 1: 0}
-        self.before_time = time.time()
 
     def get_all_product(self):
-        return self.cart
+        return self.all_product_info
 
     # 바코드가 product안에 있는지 확인
     def is_inside(self, barcode, product):
@@ -88,8 +85,8 @@ class EuclideanDistTracker:
             all_item = self.all_product_info
             area_standard = 25000
 
-        for class_id, info_tmp in all_item.items():
-            x_tmp, y_tmp, w_tmp, h_tmp, in_out_tmp, barcode_tmp, given_tmp, false_count_tmp, start_in_out_tmp, max_area_tmp = info_tmp
+        for class_id, bbox_tmp in all_item.items():
+            x_tmp, y_tmp, w_tmp, h_tmp, in_out_tmp, barcode_tmp, given_tmp, start_tmp, start_in_out_tmp, max_area_tmp = bbox_tmp
             cx_tmp = (x_tmp+x_tmp+w_tmp)//2
             cy_tmp = (y_tmp+y_tmp+h_tmp)//2
             area_tmp = x_tmp*y_tmp
@@ -100,34 +97,22 @@ class EuclideanDistTracker:
             if one_class == class_id[0] and given_tmp == False:
                 # dist : 현재 객체의 중심점과 이전 프레임에 인식된 (모든)객체의 중심점 직선 거리
                 dist = math.hypot(cx-cx_tmp, cy-cy_tmp)
-                dist_standard = 100
+                dist_standard = 70
 
                 if one_class == 0:  # barcode 인 경우
                     area_standard = 5000
                 else:
-                    area_standard = 30000
+                    area_standard = 25000
 
                 # 거리가 60이하이고, 비율 및 넓이도 기준 미만이면  id 업데이트 및 정보 업데이트
                 if dist < dist_standard and abs(w_h_rate - w_h_rate_tmp) < ERROR and abs(area-area_tmp) < area_standard:
                     max_area = max(w*h, max_area_tmp)
-                    if one_class == 1:
-                        if class_id in self.all_matchings:
-                            barcode = self.all_barcode_info[self.all_matchings[class_id]][5]
-                            self.use_barcode(self.all_matchings[class_id])
-                        else:
-                            barcode, bar_class_id = self.matching_barcode(bbox)
-                            if barcode is not None:
-                                self.all_matchings[bar_class_id] = class_id
-                                self.all_matchings[class_id] = bar_class_id
-                    if barcode is not None and barcode_tmp is not None:
-                        if len(barcode) < len(barcode_tmp):
-                            barcode = barcode_tmp
                     if barcode is not None:
                         all_item[class_id] = (
-                            x, y, w, h, cart_in_out, barcode, True, false_count_tmp, start_in_out_tmp, max_area)
+                            x, y, w, h, cart_in_out, barcode, True, start_tmp, start_in_out_tmp, max_area)
                     else:
                         all_item[class_id] = (
-                            x, y, w, h, cart_in_out, barcode_tmp, True, false_count_tmp, start_in_out_tmp, max_area)
+                            x, y, w, h, cart_in_out, barcode_tmp, True, start_tmp, start_in_out_tmp, max_area)
 
                     new_class_id = class_id
                     same_object = True
@@ -137,18 +122,11 @@ class EuclideanDistTracker:
 
         # 1. 새로운 객체가 감지된 경우
         if same_object == False:
-            bar_class_id = ()
-            if one_class == 1:
-                barcode, bar_class_id = self.matching_barcode(bbox)
-
-            if barcode is not None or (one_class == 1 and cart_in_out == False):
+            if one_class == 0 or (one_class == 1 and cart_in_out == False):
                 new_class_id = (one_class, self.class_ids[one_class])
                 all_item[new_class_id] = (
-                    x, y, w, h, cart_in_out, barcode, True, 0, cart_in_out, w*h)
+                    x, y, w, h, cart_in_out, barcode, True, time.time(), cart_in_out, w*h)
                 self.class_ids[one_class] += 1
-                if one_class == 1 and barcode is not None:
-                    self.all_matchings[bar_class_id] = new_class_id
-                    self.all_matchings[new_class_id] = bar_class_id
 
         return new_class_id
 
@@ -156,10 +134,7 @@ class EuclideanDistTracker:
     def matching_barcode(self, pro_bbox):
         for class_id, bar_info in self.all_barcode_info.items():
             # 해당 프레임에서 디코딩(인식) 된 바코드인 경우
-            # x, y, w, h, in_out, barcode, given, false_count, start_in_out, max_area = bar_info
-            if bar_info[6] == True and bar_info[7] == 0:
-                # self.all_barcode_info[class_id] = (x, y, w, h, in_out, barcode, given, 1, start_in_out, max_area)
-                self.use_barcode(class_id)
+            if bar_info[6] == True:
                 bar_bbox = bar_info[0:4]
                 if self.is_inside(bar_bbox, pro_bbox):
                     return bar_info[5], class_id
@@ -167,20 +142,18 @@ class EuclideanDistTracker:
                 pass  # 해당 프레임에 나타나지 않은 바코드는 패스
         return None, None
 
-    def use_barcode(self, class_id):
-        x, y, w, h, in_out, barcode, given, false_count, start_in_out, max_area = self.all_barcode_info[
-            class_id]
-        self.all_barcode_info[class_id] = (
-            x, y, w, h, in_out, barcode, given, 1, start_in_out, max_area)
-
     # 네 꼭짓점 중 하나라도 밖에 있으면 카트 밖
-
     def is_in_cart(self, bbox, line):
         x1, x2, x3, y1, y2, y3 = line
         x, y, w, h = bbox
         x = [x+(w//8)*3, x+(w//8)*5]
         cx = (x+x+w)//2
         cy = (y+y+h)//2
+
+        if w*y > (x3*y3)*0.8:
+            if (cx < x1 and cy < y1) or (x1 < cx < x2 and cy < y2) or (x2 < cx < x3 and cy < y3):
+                return False
+            return True
 
         for i in range(0, 2):
             if (x[i] < x1 and y+(h//8)*3 < y1) or (x1 < x[i] < x2 and y+(h//8)*3 < y2) or (x2 < x[i] < x3 and y+(h//8)*3 < y3):
@@ -189,7 +162,7 @@ class EuclideanDistTracker:
 
     def update(self, classes, bboxes, frame, line):
 
-        decoding_list = []
+        objects_bbs_cids = []
         x1, x2, x3, y1, y2, y3 = line
         a = y1
         b = y2
@@ -202,14 +175,14 @@ class EuclideanDistTracker:
 
         # given false로 초기화
         for class_id, bbox_tmp in self.all_barcode_info.items():
-            x, y, w, h, in_out, barcode, _, false_count, start_in_out, max_area = bbox_tmp
+            x, y, w, h, in_out, barcode, _, start_time, start_in_out, max_area = bbox_tmp
             self.all_barcode_info[class_id] = (
-                x, y, w, h, in_out, barcode, False, 0, start_in_out, max_area)
+                x, y, w, h, in_out, barcode, False, start_time, start_in_out, max_area)
         # given false로 초기화
         for class_id, bbox_tmp in self.all_product_info.items():
-            x, y, w, h, in_out, barcode, _, false_count, start_in_out, max_area = bbox_tmp
+            x, y, w, h, in_out, barcode, _, start_time, start_in_out, max_area = bbox_tmp
             self.all_product_info[class_id] = (
-                x, y, w, h, in_out, barcode, False, false_count, start_in_out, max_area)
+                x, y, w, h, in_out, barcode, False, start_time, start_in_out, max_area)
         # barcode와 product bbox 분리
         for one_class, bbox in zip(classes, bboxes):
             if one_class == 0:
@@ -242,73 +215,60 @@ class EuclideanDistTracker:
                 cy = (y+y+h)//2
 
                 cart_in_out = self.is_in_cart(pro_bbox, line)
-                self.id_update(1, pro_bbox, cart_in_out, None)
 
-                # barcode_text, bar_class_id = self.matching_barcode(pro_bbox)
-                # pro_class_id = self.id_update(
-                #     1, pro_bbox, cart_in_out, barcode_text)
-                # if barcode_text is not None:
-                #     self.all_matchings[bar_class_id] = pro_class_id
-                #     self.all_matchings[pro_class_id] = bar_class_id
-                # else:
-                #     pass
+                barcode_text, bar_class_id = self.matching_barcode(pro_bbox)
+                pro_class_id = self.id_update(
+                    1, pro_bbox, cart_in_out, barcode_text)
+                if barcode_text is not None:
+                    self.all_matchings[bar_class_id] = pro_class_id
+                    self.all_matchings[pro_class_id] = bar_class_id
+                else:
+                    pass
 
         # out 후 인식 안 된 경우 카트에서 상품 -1
         # in 후 인식 안 된 경우 카트에서 상품 +1
         for class_id, pro_info in list(self.all_product_info.items()):
-            # x,y,w,h,current_in_out,barcode,given,false_count,start_in_out
-            x, y, w, h, cart_in_out, barcode, given, false_count, start_in_out, max_area = pro_info
+            # x,y,w,h,current_in_out,barcode,given,start_time,start_in_out
+            x, y, w, h, cart_in_out, barcode, given, start_time, start_in_out, max_area = pro_info
             bclass_id = None
             if class_id in self.all_matchings:
                 bclass_id = self.all_matchings[class_id]
-            if given == False:
-                false_count += 1
-            else:
-                false_count = 0
-            self.all_product_info[class_id] = (
-                x, y, w, h, cart_in_out, barcode, given, false_count, start_in_out, max_area)
+                bx, by, bw, bh, bcart_in_out, bbarcode, bgiven, badd_mius, bstart_time, _ = self.all_barcode_info[
+                    bclass_id]
 
             if barcode is None:
-                if false_count > 5:
-                    # print(f"인식이 안되므로 삭제합니다.... {class_id}\n")
-                    del self.all_product_info[class_id]
-                else:
-                    if time.time() - self.before_time < 3:
-                        dont_decoding.append([class_id, pro_info[0:6]])
-                        self.before_time = time.time()
-                # print(f"바코드 없음............ {class_id}")
-            # elif 1 < same_count < 5 :
-            #     print(f"상품을 끝까지 트래킹 하지 못하는것 같습니다.... {class_id}")
+                dont_decoding.append([class_id, pro_info[0:6]])
+                #print(f"바코드 없음............ {class_id}")
             # or given == False: # or (start_time - time.time())> 3*(10**7) :
-            elif max_area*0.3 > w*h or false_count > 5:
+            elif max_area*0.5 > w*h:
                 wrong = False
                 if barcode in self.cart:
                     if cart_in_out == True:
                         self.cart[barcode] += 1
-                        print(f"장바구니에서 {class_id} // {barcoFde}제품을 1개 추가함\n")
+                        print(f"장바구니에서 {class_id} // {barcode}제품을 1개 추가함")
                     else:
                         self.cart[barcode] -= 1
-                        print(f"장바구니에서 {class_id} // {barcode}제품을 1개 제거함\n")
+                        print(f"장바구니에서 {class_id} // {barcode}제품을 1개 제거함")
                         if self.cart[barcode] == 0:
                             del self.cart[barcode]
                 else:
                     if cart_in_out == True:
                         self.cart[barcode] = 1
-                        print(
-                            f"장바구니에 새로운 {class_id} // {barcode}제품을 1개 추가함\n")
+                        print(f"장바구니에 새로운 {class_id} // {barcode}제품을 1개 추가함")
                     else:
-                        # print( f"장바구니에 없는데 제거하고자 함....{class_id} // {barcode}\n")
+                        print(f"장바구니에 없는데 제거하고자 함....{class_id} // {barcode}")
                         wrong = True
-                del self.all_product_info[class_id]
-                if bclass_id in self.all_barcode_info:
-                    del self.all_barcode_info[bclass_id]
                 if wrong is False:
                     update_cart.append([class_id, pro_info[0:6]])
                     # 장바구니에 추가 또는 삭제되는 경우 정보 삭제
+                    del self.all_product_info[class_id]
+                    del self.all_barcode_info[bclass_id]
+                    print(f"barcode = {barcode}")
+
             else:
-                decoding_list.append([class_id, pro_info[0:6]])
-        if decoding_list != []:
-            print(f"decoding = {decoding_list}\n")
-        if update_cart != []:
-            print(f"update_cart = {update_cart}\n")
-        return decoding_list, dont_decoding, update_cart, self.now_barcode_info
+                objects_bbs_cids.append([class_id, pro_info[0:6]])
+
+        print(objects_bbs_cids, "objects_bbs_cids")
+        #print(dont_decoding, "dont_decoding")
+        print(update_cart, "update_cart")
+        return objects_bbs_cids, dont_decoding, update_cart, self.now_barcode_info

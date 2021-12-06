@@ -1,0 +1,149 @@
+<html>
+  <head>
+    <title>영수증</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='style.css',_external=True) }}"
+    />
+    <style type="text/css"></style>
+  </head>
+  <body style="text-align: center; margin: 20px auto">
+    <div style="width: 300px; border: 1px solid black">
+      <table
+        width="100%"
+        border="0"
+        cellspacing="0"
+        cellpadding="0"
+        class="tblTop"
+        style="
+          border-collapse: collapse;
+          border: 1px solid black;
+          border-bottom: 0px;
+        "
+      >
+        <tr>
+          <td
+            style="
+              padding: 5px 0 10px 0;
+              font: bold 24px gulim;
+              color: black;
+              text-align: center;
+              border-bottom: 1px solid black;
+            "
+          >
+            영 수 증
+          </td>
+        </tr>
+      </table>
+      <table
+        width="100%"
+        border="0"
+        cellspacing="0"
+        cellpadding="0"
+        class="tblTop2"
+        sytle="         
+        border-collapse: collapse;
+         border-right: 1px solid black;
+         border-left: 1px solid black;
+         .noTd {
+         border-top: 1px solid black;
+         border-right: 1px solid black;
+         padding: 4px;
+       }
+       .noTd .noStxt {
+         font: bold 13px gulim;
+         color: #666666;
+       }
+       td {
+         font: bold 14px gulim;
+         color: black;
+         padding: 4px;
+       }
+         "
+      >
+        <tr>
+          <td
+            width="45%"
+            class="noTd"
+            style="border: 1px solid black; padding: 4px; padding-left: 15px"
+          >
+            주문번호 <span class="noStxt">20211108</span>
+          </td>
+        </tr>
+      </table>
+      <table
+        width="100%"
+        cellspacing="0"
+        cellpadding="0"
+        class="tbl"
+        style="
+          border-collapse: collapse;
+          border: 1px solid black;
+          td {
+            border: 1px solid black;
+            padding: 4px;
+          }
+          td.titTd {
+            font: bold 14px gulim;
+            color: black;
+          }
+
+          .item {
+            font: 13px gulim;
+            padding-left: 15px;
+          }
+          .article {
+            font: 13px gulim;
+            text-align: center;
+          }
+          .sum {
+            font: bold 13px gulim;
+            color: #4b4b4b;
+            text-align: right;
+            padding-right: 7px;
+          }
+        "
+      >
+        <tr>
+          <th style="font: bold 13px gulim; color: black; padding: 4px">
+            품목
+          </th>
+          <th style="font: bold 13px gulim; color: black; padding: 4px">
+            수량
+          </th>
+          <th style="font: bold 13px gulim; color: black; padding: 4px">
+            금액
+          </th>
+        </tr>
+        {%for item in items%}
+        <tr>
+          <td class="item" style="padding-left: 15px">{{item.item}}</td>
+          <td class="article">{{item.count}}</td>
+          <td class="sum">{{item.item_op}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      <div
+        class="basicDiv"
+        style="
+          border: 1px solid black;
+          padding: 7px 0;
+          color: black;
+          height: 60px;
+          line-height: 60px;
+        "
+      >
+        <span style="padding: 0 30px">I Track You 구매 내역 입니다.</span>
+        <img
+          src="http://pngimg.com/uploads/qr_code/qr_code_PNG38.png"
+          width="60"
+          height="60"
+          class="cimg"
+          style="vertical-align: middle"
+        />
+      </div>
+    </div>
+  </body>
+</html>
