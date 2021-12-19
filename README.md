@@ -102,3 +102,6 @@ Ubuntu에서 실행 시
     <img src="https://user-images.githubusercontent.com/62283017/137354306-d42014db-5ab3-4013-97fe-03e67428ebb3.gif" width="400" height="400" >
     <img src="https://user-images.githubusercontent.com/62283017/137355024-64e4fcf2-bd88-4b59-a81d-1f82cd491bc7.gif" width="400" height="400" >
 </p><br/>
+
+## 발표 링크
+[상품 트래킹과 바코드 다중 인식을 적용한 쇼핑 어플리케이션(HashTag)](https://www.youtube.com/watch?v=v1hi7xMpTHU)
